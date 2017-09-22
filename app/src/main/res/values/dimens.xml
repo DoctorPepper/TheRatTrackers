@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="input_label_padding_top">16dp</dimen>
+    <dimen name="input_label_padding_bottom">8dp</dimen>
+    <dimen name="input_label_padding_horizontal">20dp</dimen>
+
+</resources>
