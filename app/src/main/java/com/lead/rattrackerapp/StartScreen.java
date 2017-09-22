@@ -1,6 +1,5 @@
 package com.lead.rattrackerapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -8,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class StartScreen extends AppCompatActivity {
@@ -21,10 +19,16 @@ public class StartScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
+
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
-        passwordInput = (TextInputLayout) findViewById(R.id.input_password);
+        passwordInput = (TextInputLayout) findViewById(R.id.input_password_layout);
 
         passwordInput.setPasswordVisibilityToggleEnabled(true);
 

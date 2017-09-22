@@ -5,65 +5,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.lead.rattrackerapp.StartScreen">
+    tools:context="com.lead.rattrackerapp.StartScreen"
+    android:layout_weight="1">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="0dp"
+        android:layout_weight=".4">
     </ImageView>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/input_label_padding_bottom"
-        android:paddingLeft="@dimen/input_label_padding_horizontal"
-        android:paddingRight="@dimen/input_label_padding_horizontal"
-        android:paddingTop="@dimen/input_label_padding_top"
-        >
+        android:layout_height="0dp"
+        android:layout_weight=".6"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_email"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_email"
-            android:maxLines="1"
-            android:inputType="text"/>
-    </android.support.design.widget.TextInputLayout>
+            android:paddingBottom="@dimen/input_label_padding_bottom"
+            android:paddingLeft="@dimen/input_label_padding_horizontal"
+            android:paddingRight="@dimen/input_label_padding_horizontal"
+            android:paddingTop="@dimen/input_label_padding_top"
+            >
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/input_label_padding_bottom"
-        android:paddingLeft="@dimen/input_label_padding_horizontal"
-        android:paddingRight="@dimen/input_label_padding_horizontal"
-        android:paddingTop="@dimen/input_label_padding_top"
-        app:passwordToggleEnabled="true">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_email"
+                android:maxLines="1"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/input_password"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_password_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
+            android:paddingBottom="@dimen/input_label_padding_bottom"
+            android:paddingLeft="@dimen/input_label_padding_horizontal"
+            android:paddingRight="@dimen/input_label_padding_horizontal"
+            android:paddingTop="@dimen/input_label_padding_top"
+            app:passwordToggleEnabled="true">
 
-    <Button
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="@dimen/input_label_padding_horizontal"
-        android:layout_marginRight="@dimen/input_label_padding_horizontal"
-        android:text="Login" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:layout_gravity="center"/>
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/input_label_padding_horizontal"
+            android:layout_marginRight="@dimen/input_label_padding_horizontal"
+            android:text="@string/button_log_in" />
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_sign_up"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
 </LinearLayout>
