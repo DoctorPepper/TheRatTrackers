@@ -21,14 +21,6 @@ public class StartScreen extends AppCompatActivity {
         TextInputLayout password = (TextInputLayout) findViewById(R.id.input_password_layout);
         password.setPasswordVisibilityToggleEnabled(true);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartScreen.this, LogInScreen.class);
-                startActivity(intent);
-            }
-        });
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
