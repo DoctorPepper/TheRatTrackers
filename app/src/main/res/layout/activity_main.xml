@@ -19,6 +19,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="146dp"
-            android:text="You have logged in" />
+            android:text="You have logged in. Welcome to the RatTrackerApp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
