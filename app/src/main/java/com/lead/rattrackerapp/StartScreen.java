@@ -41,7 +41,7 @@ public class StartScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkUsernamePassword(emailInput.getText().toString(),
                         passwordInput.getEditText().getText().toString())) {
-                    Intent intent = new Intent(StartScreen.this, SignUpScreen.class);
+                    Intent intent = new Intent(StartScreen.this, MainActivity.class);
                     startActivity(intent);
                 } else {
                     emailInput.setText("");
@@ -50,7 +50,6 @@ public class StartScreen extends AppCompatActivity {
                             "Username and Password were not correct", Toast.LENGTH_LONG);
                     toast.show();
                 }
-
             }
         });
 

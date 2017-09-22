@@ -3,6 +3,6 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
 
-    <item name="visible" type="id"/>
-    <item name="masked" type="id"/>
+    <item name="visible" type="id" />
+    <item name="masked" type="id" />
 </resources>
