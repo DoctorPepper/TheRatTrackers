@@ -52,7 +52,7 @@
         android:layout_marginLeft="@dimen/input_label_padding_horizontal"
         android:layout_marginRight="@dimen/input_label_padding_horizontal"
         android:layout_marginTop="@dimen/input_label_padding_top"
-        android:text="@string/sign_up_button"/>
+        android:text="@string/button_sign_up"/>
 
 
 </LinearLayout>
