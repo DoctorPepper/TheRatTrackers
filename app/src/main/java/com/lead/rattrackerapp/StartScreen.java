@@ -24,7 +24,7 @@ public class StartScreen extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
-        passwordInput = (TextInputLayout) findViewById(R.id.input_password);
+        passwordInput = (TextInputLayout) findViewById(R.id.input_password_layout);
 
         passwordInput.setPasswordVisibilityToggleEnabled(true);
 

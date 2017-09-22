@@ -2,6 +2,7 @@
     <string name="app_name">RatTrackerApp</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
+    <string name="sign_up_button">Sign me up!</string>
 
     <item name="visible" type="id" />
     <item name="masked" type="id" />
