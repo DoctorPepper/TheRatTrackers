@@ -20,6 +20,11 @@ public class StartScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
 
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
