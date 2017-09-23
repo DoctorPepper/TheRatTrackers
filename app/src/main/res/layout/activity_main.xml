@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lead.rattrackerapp.MainActivity">
+    tools:context="com.lead.rattrackerapp.MainActivity"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="395dp"
-        android:layout_height="587dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    <TextView
+        android:id="@+id/logged_in_label_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have logged in. Welcome to the RatTrackerApp" />
 
-        <TextView
-            android:id="@+id/logged_in_label_temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="146dp"
-            android:text="You have logged in. Welcome to the RatTrackerApp" />
-    </RelativeLayout>
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button_log_out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="@string/button_log_out"/>
+
+</LinearLayout>

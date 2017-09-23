@@ -4,6 +4,7 @@
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="button_log_in">Log In</string>
+    <string name="button_log_out">Log Out</string>
     <string name="text_sign_up">Sign up</string>
     <string name="button_sign_up">Sign me up!</string>
 
