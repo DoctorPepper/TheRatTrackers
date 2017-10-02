@@ -90,7 +90,9 @@ public class SignUpScreen extends AppCompatActivity {
     public void createAccount(String email, String password, String confirm,
                                  String accountType) throws Exception {
         AccountType type = (accountType.equals("User")) ? AccountType.USER : AccountType.ADMIN;
+        //Test if both password fields match
         if (password.equals(confirm)) {
+            //Add new account to account list
             AccountList.createAccount(new Account(email, password, type, false));
         } else {
             throw new Exception("Passwords do not match");
