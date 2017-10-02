@@ -1,9 +1,7 @@
 package com.lead.rattrackerapp.Model;
 
-/**
- * Created by ejjac on 10/1/2017.
- */
 
+/* Enum defining the two different types of accounts: user or admin */
 public enum AccountType {
     USER, ADMIN;
 }

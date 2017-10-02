@@ -2,10 +2,7 @@ package com.lead.rattrackerapp.Model;
 
 import java.util.HashMap;
 
-/**
- * Created by ejjac on 10/1/2017.
- */
-
+/* A list of accounts held by the application */
 public class AccountList {
     private static final AccountList ourInstance = new AccountList();
     private static HashMap<String, Account> accounts;

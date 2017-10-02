@@ -1,9 +1,6 @@
 package com.lead.rattrackerapp.Model;
 
-/**
- * Created by ejjac on 10/1/2017.
- */
-
+/* The model for a user's account */
 public class Account {
     private String email;
     private String password;

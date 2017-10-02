@@ -27,13 +27,16 @@ public class StartScreen extends AppCompatActivity {
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
+        // Get all user input fields
         loginButton = (Button) findViewById(R.id.loginButton);
         signUpButton = (Button) findViewById(R.id.signUpButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
         passwordInput = (TextInputLayout) findViewById(R.id.input_password_layout);
 
+        // Allow the user to toggle seeing their password while typing
         passwordInput.setPasswordVisibilityToggleEnabled(true);
 
+        // Set sign-up button to take you to sign-up activity
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +45,9 @@ public class StartScreen extends AppCompatActivity {
             }
         });
 
+        // Set log-in button to check for proper credentials. If credentials are good,
+        // take the user to the main activity. Otherwise, display toast informing user
+        // their credentials were not valid.
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +68,12 @@ public class StartScreen extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param username the username that will attempt to be found in the account list
+     * @param password the password which must match the username in the account list
+     * @throws Exception if no such username is found, or if the password does not match the username
+     */
     public void checkUsernamePassword(String username, String password) throws Exception{
         AccountList.accountCorrect(username, password);
     }
