@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.lead.rattrackerapp.Model.AccountList;
+
 public class StartScreen extends AppCompatActivity {
     Button loginButton;
     Button signUpButton;
@@ -43,15 +45,16 @@ public class StartScreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkUsernamePassword(emailInput.getText().toString(),
-                        passwordInput.getEditText().getText().toString())) {
+                try {
+                    checkUsernamePassword(emailInput.getText().toString(),
+                        passwordInput.getEditText().getText().toString());
                     Intent intent = new Intent(StartScreen.this, MainActivity.class);
                     startActivity(intent);
-                } else {
+                } catch (Exception e) {
                     emailInput.setText("");
                     passwordInput.getEditText().setText("");
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Username and Password were not correct", Toast.LENGTH_LONG);
+                            e.getMessage(), Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -59,12 +62,7 @@ public class StartScreen extends AppCompatActivity {
 
     }
 
-    public boolean checkUsernamePassword(String username, String password) {
-        //can change this later to actually do it right
-        if (username.equals("user") && password.equals("password")) {
-            return true;
-        } else {
-            return false;
-        }
+    public void checkUsernamePassword(String username, String password) throws Exception{
+        AccountList.accountCorrect(username, password);
     }
 }

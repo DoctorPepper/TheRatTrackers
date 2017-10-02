@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.lead.rattrackerapp.Model.Account;
+import com.lead.rattrackerapp.Model.AccountList;
+import com.lead.rattrackerapp.Model.AccountType;
+
 public class SignUpScreen extends AppCompatActivity {
     Button signUpButton;
     Button cancelButton;
@@ -42,14 +46,16 @@ public class SignUpScreen extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (createAccount(emailInput.getText().toString(),
+                try {
+                    createAccount(emailInput.getText().toString(),
                         passwordInput.getEditText().getText().toString(),
-                        passwordConfirm.getEditText().getText().toString())) {
+                        passwordConfirm.getEditText().getText().toString(),
+                        (String) accountSpinner.getSelectedItem());
                     Intent intent = new Intent(SignUpScreen.this, MainActivity.class);
                     startActivity(intent);
-                } else {
+                } catch (Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Passwords did not match", Toast.LENGTH_LONG);
+                            e.getMessage(), Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -64,8 +70,14 @@ public class SignUpScreen extends AppCompatActivity {
         });
     }
 
-    public boolean createAccount(String email, String password, String confirm) {
-        //can change later
-        return password.equals(confirm);
+    public void createAccount(String email, String password, String confirm,
+                                 String accountType) throws Exception {
+        AccountType type = (accountType.equals("User")) ? AccountType.USER : AccountType.ADMIN;
+        if (password.equals(confirm)) {
+            AccountList.createAccount(new Account(email, password, type, false));
+        } else {
+            throw new Exception("Passwords do not match");
+        }
+
     }
 }
