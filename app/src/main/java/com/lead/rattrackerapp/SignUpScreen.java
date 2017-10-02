@@ -6,7 +6,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class SignUpScreen extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class SignUpScreen extends AppCompatActivity {
     TextInputEditText emailInput;
     TextInputLayout passwordInput;
     TextInputLayout passwordConfirm;
+    Spinner accountSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,12 @@ public class SignUpScreen extends AppCompatActivity {
         emailInput = (TextInputEditText) findViewById(R.id.input_email_signUp);
         passwordInput = (TextInputLayout) findViewById(R.id.password_SignUp);
         passwordConfirm = (TextInputLayout) findViewById(R.id.password_confirm_SignUp);
+        accountSpinner = (Spinner) findViewById(R.id.accountType);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.accountTypes, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        accountSpinner.setAdapter(adapter);
 
         passwordInput.setPasswordVisibilityToggleEnabled(true);
         passwordConfirm.setPasswordVisibilityToggleEnabled(true);
@@ -40,7 +49,7 @@ public class SignUpScreen extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Password does not match", Toast.LENGTH_LONG);
+                            "Passwords did not match", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }

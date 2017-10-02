@@ -8,6 +8,11 @@
     <string name="text_sign_up">Sign up</string>
     <string name="button_sign_up">Sign me up!</string>
 
+    <string-array name="accountTypes">
+        <item>User</item>
+        <item>Admin</item>
+    </string-array>
+
     <item name="visible" type="id" />
     <item name="masked" type="id" />
 </resources>

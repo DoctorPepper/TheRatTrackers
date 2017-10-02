@@ -62,14 +62,30 @@
             android:hint="@string/hint_confirm_password"
             android:inputType="textPassword"
             android:maxLines="1" />
+
     </android.support.design.widget.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/accountType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="@dimen/input_label_padding_horizontal"
-        android:layout_marginRight="@dimen/input_label_padding_horizontal">
+        android:layout_marginRight="@dimen/input_label_padding_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/signUpConfirmButton"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Sign Up" />
 
         <Button
             android:id="@+id/cancelButton"
@@ -80,14 +96,6 @@
             android:layout_weight="1"
             android:text="Cancel" />
 
-        <Button
-            android:id="@+id/signUpConfirmButton"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Sign Up" />
     </LinearLayout>
 
 </LinearLayout>
