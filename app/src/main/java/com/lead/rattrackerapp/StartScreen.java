@@ -69,12 +69,14 @@ public class StartScreen extends AppCompatActivity {
     }
 
     /**
+     * Checks is the passed in username and password match an existing account
      *
      * @param username the username that will attempt to be found in the account list
      * @param password the password which must match the username in the account list
-     * @throws Exception if no such username is found, or if the password does not match the username
+     * @throws Exception if no such username is found, or if the password does not
+     * match the username
      */
-    public void checkUsernamePassword(String username, String password) throws Exception{
+    public void checkUsernamePassword(String username, String password) throws Exception {
         AccountList.accountCorrect(username, password);
     }
 }

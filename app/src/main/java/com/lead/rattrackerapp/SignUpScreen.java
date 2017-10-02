@@ -80,6 +80,8 @@ public class SignUpScreen extends AppCompatActivity {
     }
 
     /**
+     * Creates a new account in the account list based on the passed in information
+     * and throws an exception if there was a problem creating the account
      *
      * @param email the email with which the user is attempting to make an account with.
      * @param password the password with which the user is attempting to make an account with.
