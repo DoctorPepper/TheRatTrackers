@@ -7,6 +7,8 @@
     <string name="button_log_out">Log Out</string>
     <string name="text_sign_up">Sign up</string>
     <string name="button_sign_up">Sign me up!</string>
+    <string name="text_account_type">Account Type:</string>
+
 
     <string-array name="accountTypes">
         <item>User</item>
