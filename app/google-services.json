@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "269543726112",
+    "firebase_url": "https://therattrackers.firebaseio.com",
+    "project_id": "therattrackers",
+    "storage_bucket": "therattrackers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269543726112:android:e9347239fb9dd1f4",
+        "android_client_info": {
+          "package_name": "com.lead.rattrackerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269543726112-4f3k8qa52ph558pumtfsq27vimism8q4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lead.rattrackerapp",
+            "certificate_hash": "c62f00101ef7ae6ffeee2239159f75eb75568788"
+          }
+        },
+        {
+          "client_id": "269543726112-6l9irka6fpg7joeef7qv1ofhm9lrr0ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDjh0OzadYAgpGtRhyTBWT5Ck19mzMCtU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269543726112-6l9irka6fpg7joeef7qv1ofhm9lrr0ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
