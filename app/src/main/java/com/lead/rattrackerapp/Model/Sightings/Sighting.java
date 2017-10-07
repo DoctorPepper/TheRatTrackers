@@ -102,24 +102,34 @@ public class Sighting {
         this.latitude = latitude;
     }
 
+    /**
+     * Shorter label which will be used as the label in the recycle view
+     *
+     * @return the sort label
+     */
     public String shortLabel() {
-        return "Sighting #" + id + ": "     + '\n' +
-                "Date: " + date             + '\n' +
-                "Address: " + address       + '\n' +
-                "City: " + city;
+        return "Sighting #" + id + ": "   + '\n' +
+                "Date: "    + date        + '\n' +
+                "Address: " + address     + '\n' +
+                "City: "    + city;
     }
 
+    /**
+     * Full informational label
+     *
+     * @return full label info
+     */
     @Override
     public String toString() {
-        return "Sighting #" + id + ": "         + "\n" +
-                "Date: " + date                 + "\n" +
-                "Location Type: " + locType     + "\n" +
-                "Zip: " + zip                   + "\n" +
-                "Address: " + address          + "\n" +
-                "City: " + city                + "\n" +
-                "Borough: " + borough           + "\n" +
-                "Longitude: " + longitude       + "\n" +
-                "Latitude: " + latitude;
+        return "Sighting #"         + id + ": "   + "\n" +
+                "Date: "            + date        + "\n" +
+                "Location Type: "   + locType     + "\n" +
+                "Zip: "             + zip         + "\n" +
+                "Address: "         + address     + "\n" +
+                "City: "            + city        + "\n" +
+                "Borough: "         + borough     + "\n" +
+                "Longitude: "       + longitude   + "\n" +
+                "Latitude: "        + latitude;
     }
 
     @Override
