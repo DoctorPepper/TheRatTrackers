@@ -9,7 +9,7 @@ package com.lead.rattrackerapp.Model.Sightings;
 public class Sighting {
     private int id;
     private String date;
-    private String locationType;
+    private String locType;
     private String zip;
     private String address;
     private String city;
@@ -21,7 +21,7 @@ public class Sighting {
                     Borough borough, double longitude, double latitude) {
         this.id = id;
         this.date = date;
-        this.locationType = locationType;
+        this.locType = locationType;
         this.zip = zip;
         this.address = address;
         this.city = city;
@@ -47,11 +47,11 @@ public class Sighting {
     }
 
     public String getLocationType() {
-        return locationType;
+        return locType;
     }
 
     public void setLocationType(String locationType) {
-        this.locationType = locationType;
+        this.locType = locationType;
     }
 
     public String getZip() {
@@ -103,23 +103,23 @@ public class Sighting {
     }
 
     public String shortLabel() {
-        return "Sighting " + id + ": " + '\t' +
-                "Date='" + date + '\'' + '\t' +
-                "Address='" + address + '\'' +  '\t' +
-                "City='" + city + '\'';
+        return "Sighting #" + id + ": "     + '\n' +
+                "Date: " + date             + '\n' +
+                "Address: " + address       + '\n' +
+                "City: " + city;
     }
 
     @Override
     public String toString() {
-        return "Sighting " + id + ":\n" +
-                "Date='" + date + '\'' + "\n" +
-                "Location Type='" + locationType + '\'' + "\n" +
-                "Zip=" + zip + "\n" +
-                "Address='" + address + '\'' + "\n" +
-                "City='" + city + '\'' + "\n" +
-                "Borough=" + borough + "\n" +
-                "Longitude=" + longitude + "\n" +
-                "Latitude=" + latitude;
+        return "Sighting #" + id + ": "         + "\n" +
+                "Date: " + date                 + "\n" +
+                "Location Type: " + locType     + "\n" +
+                "Zip: " + zip                   + "\n" +
+                "Address: " + address          + "\n" +
+                "City: " + city                + "\n" +
+                "Borough: " + borough           + "\n" +
+                "Longitude: " + longitude       + "\n" +
+                "Latitude: " + latitude;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class Sighting {
         if (Double.compare(sighting.longitude, longitude) != 0) return false;
         if (Double.compare(sighting.latitude, latitude) != 0) return false;
         if (date != null ? !date.equals(sighting.date) : sighting.date != null) return false;
-        if (locationType != null ? !locationType.equals(sighting.locationType) : sighting.locationType != null)
+        if (locType != null ? !locType.equals(sighting.locType) : sighting.locType != null)
             return false;
         if (address != null ? !address.equals(sighting.address) : sighting.address != null)
             return false;
@@ -150,7 +150,7 @@ public class Sighting {
         long temp;
         result = id;
         result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (locationType != null ? locationType.hashCode() : 0);
+        result = 31 * result + (locType != null ? locType.hashCode() : 0);
         result = 31 * result + (zip != null ? zip.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
