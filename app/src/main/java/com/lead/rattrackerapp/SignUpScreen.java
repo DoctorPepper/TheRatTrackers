@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.lead.rattrackerapp.Model.Account;
-import com.lead.rattrackerapp.Model.AccountList;
-import com.lead.rattrackerapp.Model.AccountType;
+import com.lead.rattrackerapp.Model.Accounts.Account;
+import com.lead.rattrackerapp.Model.Accounts.AccountList;
+import com.lead.rattrackerapp.Model.Accounts.AccountType;
 
 public class SignUpScreen extends AppCompatActivity {
     Button signUpButton;

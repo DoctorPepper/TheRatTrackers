@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.lead.rattrackerapp.Model.AccountList;
+import com.lead.rattrackerapp.Model.Accounts.AccountList;
 
 public class StartScreen extends AppCompatActivity {
     Button loginButton;

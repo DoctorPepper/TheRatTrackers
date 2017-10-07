@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".StartScreen"
             android:theme="@style/StartTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignUpScreen" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" android:exported="true"></activity>
     </application>
 
 </manifest>
