@@ -9,6 +9,7 @@
     android:layout_weight="1">
 
     <ImageView
+        android:src="@drawable/ratwatch"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".4">
@@ -62,6 +63,7 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#aa0000"
             android:gravity="center"
             android:layout_marginLeft="@dimen/input_label_padding_horizontal"
             android:layout_marginRight="@dimen/input_label_padding_horizontal"
