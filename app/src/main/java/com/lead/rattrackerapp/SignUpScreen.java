@@ -1,6 +1,7 @@
 package com.lead.rattrackerapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +12,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.lead.rattrackerapp.Model.Accounts.Account;
 import com.lead.rattrackerapp.Model.Accounts.AccountList;
 import com.lead.rattrackerapp.Model.Accounts.AccountType;
+import com.lead.rattrackerapp.Model.Sightings.Sighting;
 
 public class SignUpScreen extends AppCompatActivity {
     Button signUpButton;
@@ -22,6 +28,8 @@ public class SignUpScreen extends AppCompatActivity {
     TextInputLayout passwordInput;
     TextInputLayout passwordConfirm;
     Spinner accountSpinner;
+
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +62,15 @@ public class SignUpScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    createAccount(emailInput.getText().toString(),
-                        passwordInput.getEditText().getText().toString(),
-                        passwordConfirm.getEditText().getText().toString(),
-                        (String) accountSpinner.getSelectedItem());
-                    Intent intent = new Intent(SignUpScreen.this, MainActivity.class);
-                    startActivity(intent);
+                    String password = passwordInput.getEditText().getText().toString();
+                    String confirm = passwordConfirm.getEditText().getText().toString();
+                    if (password.equals(confirm)) {
+                        createFireAccount(emailInput.getText().toString(),
+                                passwordInput.getEditText().getText().toString());
+                    } else {
+                        Toast.makeText(SignUpScreen.this, R.string.password_match_fail,
+                                Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e){
                     Toast toast = Toast.makeText(getApplicationContext(),
                             e.getMessage(), Toast.LENGTH_LONG);
@@ -77,28 +88,26 @@ public class SignUpScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
-    /**
-     * Creates a new account in the account list based on the passed in information
-     * and throws an exception if there was a problem creating the account
-     *
-     * @param email the email with which the user is attempting to make an account with.
-     * @param password the password with which the user is attempting to make an account with.
-     * @param confirm the password to confirm the user typed their password accurately.
-     * @param accountType the type of account the user is creating -- admin or user.
-     * @throws Exception if the account already exists or if the passwords do not match.
-     */
-    public void createAccount(String email, String password, String confirm,
-                                 String accountType) throws Exception {
-        AccountType type = (accountType.equals("User")) ? AccountType.USER : AccountType.ADMIN;
-        //Test if both password fields match
-        if (password.equals(confirm)) {
-            //Add new account to account list
-            AccountList.createAccount(new Account(email, password, type, false));
-        } else {
-            throw new Exception("Passwords do not match");
-        }
-
+    public void createFireAccount(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                // If sign in fails, display a message to the user. If sign in succeeds
+                // the auth state listener will be notified and logic to handle the
+                // signed in user can be handled in the listener.
+                if (!task.isSuccessful()) {
+                    Toast.makeText(SignUpScreen.this, R.string.auth_failed,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(SignUpScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

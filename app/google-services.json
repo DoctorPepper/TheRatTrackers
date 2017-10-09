@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "269543726112-kl69cbndtm86mbu6j85p04hu87r66484.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lead.rattrackerapp",
+            "certificate_hash": "cfdcb9b7cece978affc0a2adfea3bc8b627292b2"
+          }
+        },
+        {
           "client_id": "269543726112-4f3k8qa52ph558pumtfsq27vimism8q4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -1,6 +1,7 @@
 package com.lead.rattrackerapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.lead.rattrackerapp.Model.Accounts.AccountList;
 
 public class StartScreen extends AppCompatActivity {
@@ -16,6 +22,10 @@ public class StartScreen extends AppCompatActivity {
     Button signUpButton;
     TextInputEditText emailInput;
     TextInputLayout passwordInput;
+
+    //Firebase Account Authentication instance data
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,32 +61,68 @@ public class StartScreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    checkUsernamePassword(emailInput.getText().toString(),
-                        passwordInput.getEditText().getText().toString());
-                    Intent intent = new Intent(StartScreen.this, MainActivity.class);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    emailInput.setText("");
-                    passwordInput.getEditText().setText("");
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            e.getMessage(), Toast.LENGTH_LONG);
-                    toast.show();
+                String email = emailInput.getText().toString();
+                String password = passwordInput.getEditText().getText().toString();
+                if (email.equals("") || password.equals("")) {
+                    Toast.makeText(StartScreen.this, R.string.sign_in_empty,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    signIn(email, password);
                 }
             }
         });
 
+        //Get instance of FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
+
+        //If the user is already logged in, automatically take user to main activity
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(StartScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     /**
-     * Checks is the passed in username and password match an existing account
      *
-     * @param username the username that will attempt to be found in the account list
-     * @param password the password which must match the username in the account list
-     * @throws Exception if no such username is found, or if the password does not
-     * match the username
+     * @param email the email with which the user is attempting to sign in
+     * @param password the password with which the user is attempting to sign in
      */
-    public void checkUsernamePassword(String username, String password) throws Exception {
-        AccountList.accountCorrect(username, password);
+    public void signIn(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (!task.isSuccessful()) {
+                    emailInput.setText("");
+                    passwordInput.getEditText().setText("");
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            R.string.sign_in_failed, Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    Intent intent = new Intent(StartScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

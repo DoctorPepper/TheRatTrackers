@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView sightingList;
     TextView sightingInfo;
     Button logOutButton;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
         sightingInfo = (TextView) findViewById(R.id.sighting_info);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
         sightingList.setLayoutManager(new LinearLayoutManager(this));
+        mAuth = FirebaseAuth.getInstance();
         logOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.signOut();
                 Intent intent = new Intent(MainActivity.this, StartScreen.class);
                 startActivity(intent);
             }
