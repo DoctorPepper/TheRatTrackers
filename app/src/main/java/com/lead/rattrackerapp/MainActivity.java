@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView sightingList;
     TextView sightingInfo;
     Button logOutButton;
+    Button mapButton;
     FirebaseAuth mAuth;
 
     @Override
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logOutButton = (Button) findViewById(R.id.button_log_out);
+        mapButton = (Button) findViewById(R.id.button_main_map);
         sightingInfo = (TextView) findViewById(R.id.sighting_info);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
         sightingList.setLayoutManager(new LinearLayoutManager(this));
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mAuth.signOut();
                 Intent intent = new Intent(MainActivity.this, StartScreen.class);
+                startActivity(intent);
+            }
+        });
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
             }
         });
