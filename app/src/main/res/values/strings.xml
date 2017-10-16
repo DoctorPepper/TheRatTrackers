@@ -10,6 +10,14 @@
     <string name="button_sign_up">Sign me up!</string>
     <string name="text_account_type">Account Type:</string>
 
+    <!-- Report Sightings -->
+    <string name="reportAddress">Address</string>
+    <string name="reportCity">City</string>
+    <string name="reportZip">Zip Code</string>
+    <string name="reportTime">Time</string>
+    <string name="reportDate">Date</string>
+    <string name="reportSighting">Report a Sighting</string>
+
     <!-- Authentication failures -->
     <string name="auth_failed">Failed to create new account</string>
     <string name="password_match_fail">Passwords do not match</string>

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView sightingInfo;
     Button logOutButton;
     Button mapButton;
+    Button reportButton;
     FirebaseAuth mAuth;
 
     @Override
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         logOutButton = (Button) findViewById(R.id.button_log_out);
         mapButton = (Button) findViewById(R.id.button_main_map);
+        reportButton = (Button) findViewById(R.id.button_reportSighting);
         sightingInfo = (TextView) findViewById(R.id.sighting_info);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
         sightingList.setLayoutManager(new LinearLayoutManager(this));
@@ -52,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//        reportButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mAuth.signOut();
+//                Intent intent = new Intent(MainActivity.this, ***NEWCLASS***.class);
+//                startActivity(intent);
+//            }
+//        });
         SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
         final List<Sighting> currList = SightingList.getInstance().getSmallData(50);
         RatDataAdapter rda = new RatDataAdapter(this, currList);

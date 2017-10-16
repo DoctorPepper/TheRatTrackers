@@ -4,4 +4,9 @@
     <dimen name="input_label_padding_bottom">8dp</dimen>
     <dimen name="input_label_padding_horizontal">20dp</dimen>
 
+    <!-- Report Sightings Input Texts -->
+    <dimen name="report_label_padding_top">8dp</dimen>
+    <dimen name="report_label_padding_bottom">8dp</dimen>
+    <dimen name="report_label_padding_horizontal">20dp</dimen>
+
 </resources>
