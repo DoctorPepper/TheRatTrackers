@@ -23,7 +23,8 @@
     <string name="password_match_fail">Passwords do not match</string>
     <string name="sign_in_failed">Account does not exist</string>
     <string name="sign_in_empty">Email or password were empty</string>
-
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="accountTypes">
         <item>User</item>
@@ -33,4 +34,5 @@
     <item name="visible" type="id" />
     <item name="masked" type="id" />
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_reports_sightings">Reports_sightings</string>
 </resources>

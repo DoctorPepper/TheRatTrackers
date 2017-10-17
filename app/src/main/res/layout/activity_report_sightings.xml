@@ -3,8 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
+        android:id="@+id/reportLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="15dp"
@@ -13,7 +13,6 @@
         android:paddingTop="@dimen/input_label_padding_top"
         android:ems="10"
         android:textSize="30sp"
-        android:inputType="textPersonName"
         android:text="@string/reportSighting" />
 
 
@@ -110,6 +109,7 @@
         android:layout_marginLeft="@dimen/input_label_padding_horizontal"
         android:layout_marginRight="@dimen/input_label_padding_horizontal"
         android:orientation="horizontal">
+
         <Button
         android:id="@+id/submitReport"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
         <Button
         android:id="@+id/cancelReport"
@@ -126,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:text="Cancel" />
+        android:text="@string/cancel" />
 
         </LinearLayout>
 
