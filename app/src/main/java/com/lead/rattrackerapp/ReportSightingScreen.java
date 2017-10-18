@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,6 +21,7 @@ public class ReportSightingScreen extends AppCompatActivity {
 
     private Button submitButton;
     private Button cancelButton;
+    private String TAG = "ReportingScreen";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,27 +55,13 @@ public class ReportSightingScreen extends AppCompatActivity {
             try {
                 List<Address> matches = geoCoder.getFromLocation(lat, lng, 1);
                 Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
-                addr.setText(bestMatch.getThoroughfare());
-                city.setText(bestMatch.getLocality());
+                addr.setText(bestMatch.getAddressLine(0));
+                city.setText(bestMatch.getAdminArea());
                 czip.setText(bestMatch.getPostalCode());
             } catch (Exception e) {
-                System.out.println("o crap");
+                Log.w(TAG, "Some or all info not displayed");
             }
         }
-
-
-//        setContentView(R.layout.activity_report_sightings);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
 }
