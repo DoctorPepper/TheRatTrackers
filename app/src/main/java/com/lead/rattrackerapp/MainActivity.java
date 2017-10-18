@@ -53,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        reportButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+          reportButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
 //                mAuth.signOut();
-//                Intent intent = new Intent(MainActivity.this, ***NEWCLASS***.class);
-//                startActivity(intent);
-//            }
-//        });
+                  Intent intent = new Intent(MainActivity.this, ReportSightingScreen.class);
+                  startActivity(intent);
+              }
+          });
         SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
         final List<Sighting> currList = SightingList.getInstance().getSmallData(50);
         RatDataAdapter rda = new RatDataAdapter(this, currList);

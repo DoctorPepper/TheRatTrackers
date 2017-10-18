@@ -17,6 +17,7 @@
     <string name="reportTime">Time</string>
     <string name="reportDate">Date</string>
     <string name="reportSighting">Report a Sighting</string>
+    <string name="reportSightingMap">REPORT A RAT</string>
 
     <!-- Authentication failures -->
     <string name="auth_failed">Failed to create new account</string>

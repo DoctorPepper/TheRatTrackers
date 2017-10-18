@@ -7,30 +7,12 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context="com.lead.rattrackerapp.MapsActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="50dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:adjustViewBounds="false"
-        android:scaleType="centerInside"
-        android:visibility="visible"
-        map:srcCompat="@drawable/pin" />
-
     <Button
         android:id="@+id/report_mapscreen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
-        android:onClick="startActivity"
-        android:text="REPORT A RAT"
+        android:text="@string/reportSightingMap"
         android:layout_marginBottom="41dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -41,6 +23,15 @@ tools:context="com.lead.rattrackerapp.MapsActivity">
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     />
+
+    <ImageView
+        android:id="@+id/confirm_address_map_custom_marker"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/pin"/>
+
+
 
 </RelativeLayout>
 

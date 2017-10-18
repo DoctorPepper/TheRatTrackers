@@ -46,9 +46,6 @@ public class ReportSightingScreen extends AppCompatActivity {
                 finish();
             }
         });
-
-        System.out.println("wow");
-
         if (b != null) {
             double lat = b.getDouble("Lat");
             double lng = b.getDouble("Lng");
@@ -58,7 +55,6 @@ public class ReportSightingScreen extends AppCompatActivity {
                 Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
                 addr.setText(bestMatch.getThoroughfare());
                 city.setText(bestMatch.getLocality());
-                System.out.println(bestMatch.getLocality());
                 czip.setText(bestMatch.getPostalCode());
             } catch (Exception e) {
                 System.out.println("o crap");
