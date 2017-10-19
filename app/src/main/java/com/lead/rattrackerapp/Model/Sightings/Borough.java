@@ -6,7 +6,7 @@ package com.lead.rattrackerapp.Model.Sightings;
  * List of possible NYC boroughs
  */
 
-enum Borough {
+public enum Borough {
     MANHATTAN ("Manhatten"),
     STATEN_ISLAND ("Staten Island"),
     QUEENS ("Queens"),

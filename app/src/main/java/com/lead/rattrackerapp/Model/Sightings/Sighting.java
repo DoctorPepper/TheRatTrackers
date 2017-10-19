@@ -17,7 +17,7 @@ public class Sighting {
     private double longitude;
     private double latitude;
 
-    Sighting(int id, String date, String locationType, String zip, String address, String city,
+    public Sighting(int id, String date, String locationType, String zip, String address, String city,
                     Borough borough, double longitude, double latitude) {
         this.id = id;
         this.date = date;
