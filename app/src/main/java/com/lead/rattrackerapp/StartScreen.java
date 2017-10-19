@@ -27,6 +27,12 @@ public class StartScreen extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    /**
+     * Initialize the activity
+     *
+     * @param savedInstanceState the Bundle object containing
+     *                           the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,12 +94,20 @@ public class StartScreen extends AppCompatActivity {
         };
     }
 
+    /**
+     * Called when the activity had been stopped but is now
+     * being displayed again to the user
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    /**
+     * Called when the activity is no longer visible to
+     * the user
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -103,6 +117,7 @@ public class StartScreen extends AppCompatActivity {
     }
 
     /**
+     * Called when the user is attempting to sign in
      *
      * @param email the email with which the user is attempting to sign in
      * @param password the password with which the user is attempting to sign in

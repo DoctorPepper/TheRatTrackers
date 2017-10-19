@@ -7,6 +7,11 @@ public class AccountList {
     private static final AccountList ourInstance = new AccountList();
     private static HashMap<String, Account> accounts;
 
+    /**
+     * Get a new instance of AccountList
+     *
+     * @return the new instance
+     */
     static AccountList getInstance() {
         return ourInstance;
     }
@@ -15,10 +20,24 @@ public class AccountList {
         accounts = new HashMap<>();
     }
 
+    /**
+     * Returns a boolean of whether or not the account exists
+     *
+     * @param email The email of the associated account
+     * @return true if the account exists, false otherwise
+     */
     public static boolean accountExists(String email) {
         return accounts.containsKey(email);
     }
 
+    /**
+     * Determines if the specified account is correctly set up
+     *
+     * @param email The email of the account
+     * @param password The password of the account
+     *
+     * @return true if the account is correct, false otherwise
+     */
     public static boolean accountCorrect(String email, String password) throws Exception {
         if (accountExists(email)) {
             Account a = accounts.get(email);
@@ -36,6 +55,11 @@ public class AccountList {
         }
     }
 
+    /**
+     * Creates a new account
+     *
+     * @param account The new account to be created
+     */
     public static void createAccount(Account account) throws Exception {
         if (!accountExists(account.getEmail())) {
             accounts.put(account.getEmail(), account);

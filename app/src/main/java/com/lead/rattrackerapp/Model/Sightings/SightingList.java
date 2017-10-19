@@ -19,6 +19,11 @@ import java.util.List;
 public class SightingList {
     private static final SightingList ourInstance = new SightingList();
 
+    /**
+     * Get a new instance of the SightingList
+     *
+     * @return the new instance
+     */
     public static SightingList getInstance() {
         return ourInstance;
     }
@@ -26,10 +31,16 @@ public class SightingList {
     private List<Sighting> data;
     private int size;
 
+
     private SightingList() {
         data = new ArrayList<>();
     }
 
+    /**
+     * Load the Sightings to be displayed
+     *
+     * @param sightings the InputStream used to read from Sightings
+     */
     public void loadSightings(InputStream sightings) {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(sightings, StandardCharsets.UTF_8));
@@ -78,19 +89,41 @@ public class SightingList {
         }
     }
 
+    /**
+     * Add a new Sighting
+     *
+     * @param s the new Sighting to be entered
+     */
     public void addSighting(Sighting s) {
         data.add(s);
         size++;
     }
 
+    /**
+     * Get the size of the Sighting
+     *
+     * @return the size
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Get the data of the List
+     *
+     * @return the data
+     */
     public List getData() {
         return data;
     }
 
+    /**
+     * Get a small amount of data
+     *
+     * @param amount the amount of data to get,
+     *               which is less than the total size of data
+     * @return the small amount of data
+     */
     public List<Sighting> getSmallData(int amount) {
         if (data.size() < amount) {
             amount = data.size();
@@ -102,6 +135,13 @@ public class SightingList {
         return smallData;
     }
 
+    /**
+     * Gets a subset of the data
+     *
+     * @param start marks the start of the subset
+     * @param end marks the end of the subset
+     * @return the subset of data
+     */
     public List<Sighting> getSubsetData(int start, int end) {
         if ((end - start) < data.size()) {
             List subData = new ArrayList(data.size());

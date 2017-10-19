@@ -26,6 +26,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Button reportButton;
 
+    /**
+     * Initialize the activity
+     *
+     * @param savedInstanceState the Bundle object containing
+     *                           the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +71,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     *
+     * @param googleMap class of the Google Maps API
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {

@@ -29,6 +29,12 @@ public class ReportSightingScreen extends AppCompatActivity {
     private Button cancelButton;
     private String TAG = "ReportingScreen";
 
+    /**
+     * Initialize the activity
+     *
+     * @param savedInstanceState the Bundle object containing
+     *                           the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,12 @@ public class ReportSightingScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the date from the DatePicker
+     *
+     * @param datePicker the DatePicker object
+     * @return the date of the calender
+     */
     public Date getDateFromPicker(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
@@ -84,6 +96,16 @@ public class ReportSightingScreen extends AppCompatActivity {
         return calendar.getTime();
     }
 
+    /**
+     * Submits all the data entered
+     *
+     * @param addr the address entered
+     * @param city the city entered
+     * @param czip the zip code entered
+     * @param datePicker the date entered
+     * @param timePicker the time entered
+     * @param locType the location type entered
+     */
     public void submitData(TextInputEditText addr, TextInputEditText city, TextInputEditText czip,
                            DatePicker datePicker, TimePicker timePicker, String locType) {
         if (addr.getText() == null || city.getText() == null || czip.getText() == null) {
@@ -122,6 +144,12 @@ public class ReportSightingScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the location form the Address
+     *
+     * @param strAddress the address entered as a String
+     * @return the location
+     */
     public double[] getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
@@ -144,6 +172,12 @@ public class ReportSightingScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Gets the borough from the Address
+     *
+     * @param strAddress the address entered as a String
+     * @return the borough
+     */
     public Borough getBouroughFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;

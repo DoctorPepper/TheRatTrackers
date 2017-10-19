@@ -31,6 +31,12 @@ public class SignUpScreen extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
+    /**
+     * Initialize the activity
+     *
+     * @param savedInstanceState the Bundle object containing
+     *                           the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +98,12 @@ public class SignUpScreen extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    /**
+     * Create a new FireBase account
+     *
+     * @param email the email of the account
+     * @param password the password of the account
+     */
     public void createFireAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

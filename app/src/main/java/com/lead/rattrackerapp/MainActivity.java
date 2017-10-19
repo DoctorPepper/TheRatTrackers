@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
     Button reportButton;
     FirebaseAuth mAuth;
 
+    /**
+     * Initialize the activity
+     *
+     * @param savedInstanceState the Bundle object containing
+     *                           the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

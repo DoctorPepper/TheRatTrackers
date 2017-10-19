@@ -20,6 +20,11 @@ public enum Borough {
         this.name = name;
     }
 
+    /**
+     * Gets the name of the Borough
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
