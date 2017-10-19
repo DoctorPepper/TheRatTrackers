@@ -24,6 +24,7 @@ public class SightingList {
     }
 
     private List<Sighting> data;
+    private int size;
 
     private SightingList() {
         data = new ArrayList<>();
@@ -70,6 +71,7 @@ public class SightingList {
                 addSighting(new Sighting(id, date, locationType, zip, address, city, borough,
                         longitude, latitude));
             }
+            size++;
             br.close();
         } catch (IOException e) {
             Log.e("Sightings", "Error reading assets", e);
@@ -78,6 +80,11 @@ public class SightingList {
 
     public void addSighting(Sighting s) {
         data.add(s);
+        size++;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public List getData() {
@@ -85,6 +92,9 @@ public class SightingList {
     }
 
     public List<Sighting> getSmallData(int amount) {
+        if (data.size() < amount) {
+            amount = data.size();
+        }
         List smallData = new ArrayList(amount);
         for (int i = data.size() - 1; i > (data.size() - amount + 1); i--) {
             smallData.add(data.get(i));
@@ -93,10 +103,18 @@ public class SightingList {
     }
 
     public List<Sighting> getSubsetData(int start, int end) {
-        List subData = new ArrayList(end - start);
-        for (int i = start; i < end; i++) {
-            subData.add(data.get(i));
+        if ((end - start) < data.size()) {
+            List subData = new ArrayList(data.size());
+            for (int i = 0; i < data.size(); i++) {
+                subData.add(data.get(i));
+            }
+            return subData;
+        } else {
+            List subData = new ArrayList(end - start);
+            for (int i = start; i < end; i++) {
+                subData.add(data.get(i));
+            }
+            return subData;
         }
-        return subData;
     }
 }

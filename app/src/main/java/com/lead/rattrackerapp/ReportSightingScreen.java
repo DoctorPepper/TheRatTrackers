@@ -93,11 +93,24 @@ public class ReportSightingScreen extends AppCompatActivity {
             DateFormat dateFormatter = DateFormat.getDateInstance();
             Date date = getDateFromPicker(datePicker);
             String dateString = dateFormatter.format(date);
-            double[] geoCoords = getLocationFromAddress(addr.getText().toString() +
-                    ", " + city.getText().toString());
-            Borough borough = getBouroughFromAddress(addr.getText().toString() +
-                    ", " + city.getText().toString());
-            Sighting sighting = new Sighting(0, dateString, locType,
+            double[] geoCoords = new double[2];
+            try {
+                geoCoords = getLocationFromAddress(addr.getText().toString() +
+                        ", " + city.getText().toString());
+            } catch (Exception e) {
+                //TODO: Figure this out further
+            }
+            Borough borough = Borough.NONE;
+            try {
+                borough = getBouroughFromAddress(addr.getText().toString() +
+                        ", " + city.getText().toString());
+                if (borough == null) {
+                    borough = Borough.NONE;
+                }
+            } catch (Exception e) {
+                //TODO: Figure this out further
+            }
+            Sighting sighting = new Sighting(SightingList.getInstance().getSize() + 1, dateString, locType,
                     czip.getText().toString(),
                     addr.getText().toString(),
                     city.getText().toString(), borough, geoCoords[0], geoCoords[1]);

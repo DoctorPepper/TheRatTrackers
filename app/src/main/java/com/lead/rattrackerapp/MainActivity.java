@@ -56,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
           reportButton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-//                mAuth.signOut();
                   Intent intent = new Intent(MainActivity.this, ReportSightingScreen.class);
                   startActivity(intent);
               }
           });
-        SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
+        if (SightingList.getInstance().getSize() == 0) {
+            SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
+        }
         final List<Sighting> currList = SightingList.getInstance().getSmallData(50);
         RatDataAdapter rda = new RatDataAdapter(this, currList);
         rda.setClickListener(new RatDataAdapter.SightingClickListener() {

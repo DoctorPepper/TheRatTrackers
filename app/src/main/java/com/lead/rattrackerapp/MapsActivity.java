@@ -49,8 +49,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
-
-        SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
+        SightingList list = SightingList.getInstance();
+        if (list.getSize() == 0){
+            SightingList.getInstance().loadSightings(getResources().openRawResource(R.raw.sightings));
+        }
         currList = SightingList.getInstance().getSmallData(100);
     }
 
