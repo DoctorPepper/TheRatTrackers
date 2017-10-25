@@ -13,6 +13,11 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
 import com.lead.rattrackerapp.Model.Sightings.Borough;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
@@ -29,6 +34,7 @@ public class ReportSightingScreen extends AppCompatActivity {
     private Button cancelButton;
     private String TAG = "ReportingScreen";
 
+    private DatabaseReference mDatabase;
     /**
      * Initialize the activity
      *
@@ -41,14 +47,20 @@ public class ReportSightingScreen extends AppCompatActivity {
         setContentView(R.layout.activity_report_sightings);
         Bundle b = getIntent().getExtras();
 
+        //Get all user input fields to get information
         final TextInputEditText addr = (TextInputEditText) findViewById(R.id.addressReport);
         final TextInputEditText city = (TextInputEditText) findViewById(R.id.cityReport);
         final TextInputEditText czip = (TextInputEditText) findViewById(R.id.cityZip);
         final TextInputEditText locType = (TextInputEditText) findViewById(R.id.location_type);
         final DatePicker datePicker = (DatePicker) findViewById(R.id.date_input);
         final TimePicker timePicker = (TimePicker) findViewById(R.id.time_input);
-
         submitButton = (Button) findViewById(R.id.submitReport);
+        cancelButton = (Button) findViewById(R.id.cancelReport);
+
+        //Get database reference
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        //Set submit button listener to submit data and take user back to main
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,13 +68,15 @@ public class ReportSightingScreen extends AppCompatActivity {
             }
         });
 
-        cancelButton = (Button) findViewById(R.id.cancelReport);
+        //Set cancel button listener to leave this screen
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+        //If we got here through the maps activity, the bundle 'b' will have useful information.
+        //If b is not null, get that information out and set it as the defaults
         if (b != null) {
             double lat = b.getDouble("Lat");
             double lng = b.getDouble("Lng");
@@ -108,13 +122,17 @@ public class ReportSightingScreen extends AppCompatActivity {
      */
     public void submitData(TextInputEditText addr, TextInputEditText city, TextInputEditText czip,
                            DatePicker datePicker, TimePicker timePicker, String locType) {
+        //If any of the required fields are null, throw a toast and get out
         if (addr.getText() == null || city.getText() == null || czip.getText() == null) {
             Toast.makeText(getApplicationContext(), "You must fill all inputs",
                     Toast.LENGTH_SHORT).show();
         } else {
+            //Get date from datepicker
+            //TODO: Incorporate timePicker to get dateTime
             DateFormat dateFormatter = DateFormat.getDateInstance();
             Date date = getDateFromPicker(datePicker);
             String dateString = dateFormatter.format(date);
+            //Try to get geoCoordinates from Address String
             double[] geoCoords = new double[2];
             try {
                 geoCoords = getLocationFromAddress(addr.getText().toString() +
@@ -122,6 +140,7 @@ public class ReportSightingScreen extends AppCompatActivity {
             } catch (Exception e) {
                 //TODO: Figure this out further
             }
+            //Try to get Borough from address string
             Borough borough = Borough.NONE;
             try {
                 borough = getBouroughFromAddress(addr.getText().toString() +
@@ -132,13 +151,12 @@ public class ReportSightingScreen extends AppCompatActivity {
             } catch (Exception e) {
                 //TODO: Figure this out further
             }
-            Sighting sighting = new Sighting(SightingList.getInstance().getSize() + 1, dateString, locType,
+            //Create sighting based upon gathered information
+            Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString, locType,
                     czip.getText().toString(),
                     addr.getText().toString(),
                     city.getText().toString(), borough, geoCoords[0], geoCoords[1]);
-            Log.v(TAG, sighting.toString());
-            SightingList sightingList = SightingList.getInstance();
-            sightingList.addSighting(sighting);
+            mDatabase.child("sighting").child(String.valueOf(sighting.getId())).setValue(sighting);
             Intent intent = new Intent(ReportSightingScreen.this, MainActivity.class);
             startActivity(intent);
         }

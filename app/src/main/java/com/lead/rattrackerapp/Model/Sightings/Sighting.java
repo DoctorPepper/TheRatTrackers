@@ -30,6 +30,9 @@ public class Sighting {
         this.latitude = latitude;
     }
 
+    public Sighting() {
+    }
+
     /**
      * Gets the ID of the Sighting
      *

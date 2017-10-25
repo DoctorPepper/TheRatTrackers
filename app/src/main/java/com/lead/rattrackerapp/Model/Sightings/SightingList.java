@@ -1,12 +1,8 @@
 package com.lead.rattrackerapp.Model.Sightings;
 
-import android.util.Log;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,64 +25,15 @@ public class SightingList {
     }
 
     private List<Sighting> data;
-    private int size;
+    private int nextKey = 0;
 
 
     private SightingList() {
         data = new ArrayList<>();
     }
 
-    /**
-     * Load the Sightings to be displayed
-     *
-     * @param sightings the InputStream used to read from Sightings
-     */
-    public void loadSightings(InputStream sightings) {
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(sightings, StandardCharsets.UTF_8));
-            String line;
-            br.readLine(); //get rid of header line
-            while ((line = br.readLine()) != null) {
-                String[] elements = line.split(",", -1);
-                int id = (elements[0].length() > 0) ? Integer.parseInt(elements[0]) : -1;
-                String date = elements[1];
-                String locationType = elements[7];
-                String zip = elements[8];
-                String address = elements[9];
-                String city = elements[16];
-                Borough borough;
-                switch (elements[23]) {
-                    case ("MANHATTAN"):
-                        borough = Borough.MANHATTAN;
-                        break;
-                    case ("QUEENS"):
-                        borough = Borough.QUEENS;
-                        break;
-                    case ("BROOKLYN"):
-                        borough = Borough.BROOKLYN;
-                        break;
-                    case ("STATEN ISLAND"):
-                        borough = Borough.STATEN_ISLAND;
-                        break;
-                    case ("BRONX"):
-                        borough = Borough.BRONX;
-                        break;
-                    default:
-                        borough = Borough.NONE;
-                        break;
-                }
-                Double latitude = (elements[49].length() > 0)
-                        ? Double.parseDouble(elements[49]) : -1;
-                Double longitude = (elements[50].length() > 0)
-                        ? Double.parseDouble(elements[50]) : -1;
-                addSighting(new Sighting(id, date, locationType, zip, address, city, borough,
-                        longitude, latitude));
-            }
-            size++;
-            br.close();
-        } catch (IOException e) {
-            Log.e("Sightings", "Error reading assets", e);
-        }
+    public void reset() {
+        data = new ArrayList<>();
     }
 
     /**
@@ -96,16 +43,16 @@ public class SightingList {
      */
     public void addSighting(Sighting s) {
         data.add(s);
-        size++;
+        nextKey = Math.max(nextKey, s.getId() + 1);
     }
 
     /**
-     * Get the size of the Sighting
+     * Get the next key we will use in the Database
      *
-     * @return the size
+     * @return the next key
      */
-    public int getSize() {
-        return size;
+    public int getNextKey() {
+        return nextKey;
     }
 
     /**
