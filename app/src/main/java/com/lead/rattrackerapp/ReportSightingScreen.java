@@ -8,8 +8,10 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -54,6 +56,9 @@ public class ReportSightingScreen extends AppCompatActivity {
         final TextInputEditText locType = (TextInputEditText) findViewById(R.id.location_type);
         final DatePicker datePicker = (DatePicker) findViewById(R.id.date_input);
         final TimePicker timePicker = (TimePicker) findViewById(R.id.time_input);
+        final Spinner boroughSpinner = (Spinner) findViewById(R.id.borough_spinner);
+        boroughSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                Borough.values()));
         submitButton = (Button) findViewById(R.id.submitReport);
         cancelButton = (Button) findViewById(R.id.cancelReport);
 
@@ -140,22 +145,12 @@ public class ReportSightingScreen extends AppCompatActivity {
             } catch (Exception e) {
                 //TODO: Figure this out further
             }
-            //Try to get Borough from address string
-            Borough borough = Borough.NONE;
-            try {
-                borough = getBouroughFromAddress(addr.getText().toString() +
-                        ", " + city.getText().toString());
-                if (borough == null) {
-                    borough = Borough.NONE;
-                }
-            } catch (Exception e) {
-                //TODO: Figure this out further
-            }
+
             //Create sighting based upon gathered information
             Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString, locType,
                     czip.getText().toString(),
                     addr.getText().toString(),
-                    city.getText().toString(), borough, geoCoords[0], geoCoords[1]);
+                    city.getText().toString(), Borough.NONE, geoCoords[0], geoCoords[1]);
             mDatabase.child("sighting").child(String.valueOf(sighting.getId())).setValue(sighting);
             Intent intent = new Intent(ReportSightingScreen.this, MainActivity.class);
             startActivity(intent);
@@ -189,47 +184,4 @@ public class ReportSightingScreen extends AppCompatActivity {
             return null;
         }
     }
-
-    /**
-     * Gets the borough from the Address
-     *
-     * @param strAddress the address entered as a String
-     * @return the borough
-     */
-    public Borough getBouroughFromAddress(String strAddress) {
-        Geocoder coder = new Geocoder(this);
-        List<Address> address;
-        try {
-            address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return Borough.NONE;
-            }
-            Address location = address.get(0);
-            String borough = location.getSubLocality();
-            if (borough == null) {
-                return null;
-            }
-            Log.v(TAG, borough);
-            if (borough.equals(Borough.BRONX.getName())) {
-                return Borough.BRONX;
-            }
-            if (borough.equals(Borough.MANHATTAN.getName())) {
-                return Borough.MANHATTAN;
-            }
-            if (borough.equals(Borough.STATEN_ISLAND.getName())) {
-                return Borough.STATEN_ISLAND;
-            }
-            if (borough.equals(Borough.QUEENS.getName())) {
-                return Borough.QUEENS;
-            }
-            if (borough.equals(Borough.BROOKLYN.getName())) {
-                return Borough.BRONX;
-            } else {
-                return Borough.NONE;
-            }
-        } catch (IOException e) {
-            return Borough.NONE;
-        }
-    }
-
 }

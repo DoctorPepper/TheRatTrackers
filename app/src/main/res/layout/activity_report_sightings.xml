@@ -37,22 +37,40 @@
             android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/report_label_padding_bottom"
-        android:paddingLeft="@dimen/report_label_padding_horizontal"
-        android:paddingRight="@dimen/report_label_padding_horizontal"
-        android:paddingTop="@dimen/report_label_padding_top">
+        android:orientation="horizontal">
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/cityZip"
-            android:layout_width="match_parent"
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/reportZip"
-            android:inputType="text"
-            android:maxLines="1" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/report_label_padding_bottom"
+            android:paddingLeft="@dimen/report_label_padding_horizontal"
+            android:paddingRight="@dimen/report_label_padding_horizontal"
+            android:paddingTop="@dimen/report_label_padding_top">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/cityZip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/reportZip"
+                android:inputType="text"
+                android:maxLines="1" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/borough_spinner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="@dimen/report_label_padding_bottom"
+            android:paddingLeft="@dimen/report_label_padding_horizontal"
+            android:paddingRight="@dimen/report_label_padding_horizontal"
+            android:paddingTop="@dimen/report_label_padding_top"/>
+
+    </LinearLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -105,7 +123,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:text="@string/submit" />
 
             <Button
@@ -113,7 +130,6 @@
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="@string/cancel" />
 
