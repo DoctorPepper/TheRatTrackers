@@ -135,7 +135,7 @@ public class ReportSightingScreen extends AppCompatActivity {
             //Get date from datepicker
             //TODO: Incorporate timePicker to get dateTime
             Date date = getDateFromPicker(datePicker);
-            String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss", date).toString();
+            String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss a", date).toString();
             //Try to get geoCoordinates from Address String
             double[] geoCoords = new double[2];
             try {
