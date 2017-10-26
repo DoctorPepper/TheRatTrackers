@@ -19,7 +19,7 @@
     <string name="reportSighting">Report a Sighting</string>
     <string name="reportSightingMap">REPORT A RAT</string>
     <string name="reportLocationType">Location Type</string>
-
+    <string name="key">id</string>
     <!-- Authentication failures -->
     <string name="auth_failed">Failed to create new account</string>
     <string name="password_match_fail">Passwords do not match</string>
@@ -27,6 +27,10 @@
     <string name="sign_in_empty">Email or password were empty</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
+
+    <string name="info_card_borough">Borough</string>
+    <string name="info_card_long">Longitude</string>
+    <string name="info_card_lat">Latitude</string>
 
     <string-array name="accountTypes">
         <item>User</item>
