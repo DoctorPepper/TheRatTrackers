@@ -26,10 +26,12 @@ public class SightingList {
 
     private List<Sighting> data;
     private int nextKey = 0;
+    private DatabaseReference mDatabase;
 
 
     private SightingList() {
         data = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void reset() {

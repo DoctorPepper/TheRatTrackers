@@ -23,6 +23,8 @@ import com.lead.rattrackerapp.Model.Sightings.Borough;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -108,7 +110,7 @@ public class ReportSightingScreen extends AppCompatActivity {
      * @param datePicker the DatePicker object
      * @return the date of the calender
      */
-    public Date getDateFromPicker(DatePicker datePicker) {
+    private Date getDateFromPicker(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
         int year =  datePicker.getYear();
@@ -126,7 +128,7 @@ public class ReportSightingScreen extends AppCompatActivity {
      * Submits all the data entered
      *
      */
-    public void submitData() {
+    private void submitData() {
         //If any of the required fields are null, throw a toast and get out
         if (addr.getText() == null || city.getText() == null || czip.getText() == null) {
             Toast.makeText(getApplicationContext(), "You must fill all inputs",
@@ -142,14 +144,17 @@ public class ReportSightingScreen extends AppCompatActivity {
                 geoCoords = getLocationFromAddress(addr.getText().toString() +
                         ", " + city.getText().toString());
             } catch (Exception e) {
-                //TODO: Figure this out further
+                geoCoords[0] = 0;
+                geoCoords[1] = 0;
             }
+
+            long longDate = getLongDateFromDateString(dateString);
 
             //Create sighting based upon gathered information
             Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString,
                     locType.getText().toString(), czip.getText().toString(),
                     addr.getText().toString(), city.getText().toString(),
-                    (Borough) boroughSpinner.getSelectedItem(), geoCoords[0], geoCoords[1]);
+                    (Borough) boroughSpinner.getSelectedItem(), geoCoords[0], geoCoords[1], longDate);
             mDatabase.child("sighting").child(String.valueOf(sighting.getId())).setValue(sighting);
             Intent intent = new Intent(ReportSightingScreen.this, MainActivity.class);
             startActivity(intent);
@@ -162,7 +167,7 @@ public class ReportSightingScreen extends AppCompatActivity {
      * @param strAddress the address entered as a String
      * @return the location
      */
-    public double[] getLocationFromAddress(String strAddress) {
+    private double[] getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
         try {
@@ -181,6 +186,17 @@ public class ReportSightingScreen extends AppCompatActivity {
             return geoCoords;
         } catch (IOException e) {
             return null;
+        }
+    }
+
+    private long getLongDateFromDateString(String date) {
+        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        try {
+            Date dateObj = f.parse(date);
+            return dateObj.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }

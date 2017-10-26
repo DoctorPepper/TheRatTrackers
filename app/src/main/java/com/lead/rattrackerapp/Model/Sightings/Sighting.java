@@ -16,9 +16,10 @@ public class Sighting {
     private Borough borough;
     private double longitude;
     private double latitude;
+    private long longDate;
 
     public Sighting(int id, String date, String locationType, String zip, String address, String city,
-                    Borough borough, double longitude, double latitude) {
+                    Borough borough, double longitude, double latitude, long longDate) {
         this.id = id;
         this.date = date;
         this.locType = locationType;
@@ -28,6 +29,9 @@ public class Sighting {
         this.borough = borough;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.longDate = longDate;
+
+
     }
 
     public Sighting() {
@@ -193,6 +197,14 @@ public class Sighting {
      */
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public void setLongDate(long longDate) {
+        this.longDate = longDate;
+    }
+
+    public long getLongDate() {
+        return longDate;
     }
 
     /**

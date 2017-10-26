@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Set up database query to only include last 50 sightings
-        Query smallQuery = mDatabase.child("sighting").orderByKey().limitToLast(50);
+        Query smallQuery = mDatabase.child("sighting").orderByChild("longDate").limitToLast(50);
 
         //Add 'single value' listener in order to add all sightings to view upon opening main
         smallQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -66,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 SightingList.getInstance().reset();
                     for (DataSnapshot sighting: dataSnapshot.getChildren()) {
-                        SightingList.getInstance().addSighting(sighting.getValue(Sighting.class));
+                        Sighting s = sighting.getValue(Sighting.class);
+                        SightingList.getInstance().addSighting(s);
                     }
                 final List<Sighting> currList = SightingList.getInstance().getSmallData(50);
                 RatDataAdapter rda = new RatDataAdapter(MainActivity.this, currList);
