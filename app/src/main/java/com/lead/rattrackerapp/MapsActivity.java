@@ -5,12 +5,17 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
@@ -18,7 +23,50 @@ import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, InfoWindowAdapter {
+
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        return null;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        View v = null;
+        try {
+
+            // Getting view from the layout file info_window_layout
+            v = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+
+            TextView sightingNo = (TextView) v.findViewById(R.id.sightingNo);
+            sightingNo.setText(marker.getTitle());
+
+            TextView dateTxt = (TextView) v.findViewById(R.id.dateTxt);
+            dateTxt.setText("Date: " + currList.get((Integer) marker.getTag()).getDate());
+
+            // Getting reference to the TextView to set latitude
+            TextView addressTxt = (TextView) v.findViewById(R.id.addressTxt);
+            addressTxt.setText("Address: " + currList.get(((Integer) marker.getTag())).getAddress());
+
+            TextView cityTxt = (TextView) v.findViewById(R.id.cityTxt);
+            cityTxt.setText("City: " + currList.get(((Integer) marker.getTag())).getCity());
+
+            TextView boroughTxt = (TextView) v.findViewById(R.id.boroughTxt);
+            boroughTxt.setText("Borough: " + currList.get(((Integer) marker.getTag())).getBorough().toString());
+
+            TextView latitudeTxt = (TextView) v.findViewById(R.id.latitudeTxt);
+            latitudeTxt.setText("Latitude: " + Double.toString(currList.get(((Integer) marker.getTag())).getLatitude()));
+
+            TextView longitudeTxt = (TextView) v.findViewById(R.id.longitudeTxt);
+            longitudeTxt.setText("Longitude: " + Double.toString(currList.get(((Integer) marker.getTag())).getLongitude()));
+
+        } catch (Exception ev) {
+            System.out.print(ev.getMessage());
+        }
+
+        return v;
+    }
 
     private GoogleMap mMap;
 
@@ -74,14 +122,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in NYC and move the camera
         LatLng nyc = new LatLng(40.73, -73.93);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
 
+        int index = 0;
         for (Sighting s : currList) {
             LatLng p = new LatLng(s.getLatitude(), s.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(p).alpha(0.5f));
+            Marker newMarker = mMap.addMarker(new MarkerOptions()
+                    .position(p)
+                    .alpha(0.5f)
+                    .title("Sighting #" + Integer.toString(s.getId())));
+            newMarker.setTag(index);
+            System.out.println(index);
+            index++;
         }
+        mMap.setInfoWindowAdapter(this);
     }
+
 }
