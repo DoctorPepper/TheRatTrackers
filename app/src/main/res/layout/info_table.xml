@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/key"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_key"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/reportDate"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_date"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/reportAddress"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_address"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/reportLocationType"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_location_type"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/reportZip"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_zip"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/reportCity"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_city"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/info_card_borough"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_borough"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/info_card_lat"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_lat"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="@string/info_card_long"
+            android:padding="3dip" />
+        <TextView
+            android:id="@+id/info_card_long"
+            android:gravity="end"
+            android:padding="3dip" />
+    </TableRow>
+</TableLayout>

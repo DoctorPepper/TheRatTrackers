@@ -6,6 +6,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,9 +16,6 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
@@ -25,7 +23,6 @@ import com.lead.rattrackerapp.Model.Sightings.Borough;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,6 +32,13 @@ public class ReportSightingScreen extends AppCompatActivity {
     private Button submitButton;
     private Button cancelButton;
     private String TAG = "ReportingScreen";
+    private TextInputEditText addr;
+    private TextInputEditText city;
+    private TextInputEditText czip;
+    private TextInputEditText locType;
+    private DatePicker datePicker;
+    private TimePicker timePicker;
+    private Spinner boroughSpinner;
 
     private DatabaseReference mDatabase;
     /**
@@ -50,13 +54,13 @@ public class ReportSightingScreen extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
 
         //Get all user input fields to get information
-        final TextInputEditText addr = (TextInputEditText) findViewById(R.id.addressReport);
-        final TextInputEditText city = (TextInputEditText) findViewById(R.id.cityReport);
-        final TextInputEditText czip = (TextInputEditText) findViewById(R.id.cityZip);
-        final TextInputEditText locType = (TextInputEditText) findViewById(R.id.location_type);
-        final DatePicker datePicker = (DatePicker) findViewById(R.id.date_input);
-        final TimePicker timePicker = (TimePicker) findViewById(R.id.time_input);
-        final Spinner boroughSpinner = (Spinner) findViewById(R.id.borough_spinner);
+        addr = (TextInputEditText) findViewById(R.id.addressReport);
+        city = (TextInputEditText) findViewById(R.id.cityReport);
+        czip = (TextInputEditText) findViewById(R.id.cityZip);
+        locType = (TextInputEditText) findViewById(R.id.location_type);
+        datePicker = (DatePicker) findViewById(R.id.date_input);
+        timePicker = (TimePicker) findViewById(R.id.time_input);
+        boroughSpinner = (Spinner) findViewById(R.id.borough_spinner);
         boroughSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                 Borough.values()));
         submitButton = (Button) findViewById(R.id.submitReport);
@@ -69,7 +73,7 @@ public class ReportSightingScreen extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                submitData(addr, city, czip, datePicker, timePicker, locType.getText().toString());
+                submitData();
             }
         });
 
@@ -109,8 +113,11 @@ public class ReportSightingScreen extends AppCompatActivity {
         int month = datePicker.getMonth();
         int year =  datePicker.getYear();
 
+        int hour = timePicker.getHour();
+        int minute = timePicker.getMinute();
+
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
+        calendar.set(year, month, day, hour, minute);
 
         return calendar.getTime();
     }
@@ -118,15 +125,8 @@ public class ReportSightingScreen extends AppCompatActivity {
     /**
      * Submits all the data entered
      *
-     * @param addr the address entered
-     * @param city the city entered
-     * @param czip the zip code entered
-     * @param datePicker the date entered
-     * @param timePicker the time entered
-     * @param locType the location type entered
      */
-    public void submitData(TextInputEditText addr, TextInputEditText city, TextInputEditText czip,
-                           DatePicker datePicker, TimePicker timePicker, String locType) {
+    public void submitData() {
         //If any of the required fields are null, throw a toast and get out
         if (addr.getText() == null || city.getText() == null || czip.getText() == null) {
             Toast.makeText(getApplicationContext(), "You must fill all inputs",
@@ -134,9 +134,8 @@ public class ReportSightingScreen extends AppCompatActivity {
         } else {
             //Get date from datepicker
             //TODO: Incorporate timePicker to get dateTime
-            DateFormat dateFormatter = DateFormat.getDateInstance();
             Date date = getDateFromPicker(datePicker);
-            String dateString = dateFormatter.format(date);
+            String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss a", date).toString();
             //Try to get geoCoordinates from Address String
             double[] geoCoords = new double[2];
             try {
@@ -147,10 +146,10 @@ public class ReportSightingScreen extends AppCompatActivity {
             }
 
             //Create sighting based upon gathered information
-            Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString, locType,
-                    czip.getText().toString(),
-                    addr.getText().toString(),
-                    city.getText().toString(), Borough.NONE, geoCoords[0], geoCoords[1]);
+            Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString,
+                    locType.getText().toString(), czip.getText().toString(),
+                    addr.getText().toString(), city.getText().toString(),
+                    (Borough) boroughSpinner.getSelectedItem(), geoCoords[0], geoCoords[1]);
             mDatabase.child("sighting").child(String.valueOf(sighting.getId())).setValue(sighting);
             Intent intent = new Intent(ReportSightingScreen.this, MainActivity.class);
             startActivity(intent);

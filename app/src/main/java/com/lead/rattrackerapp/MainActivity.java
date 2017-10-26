@@ -1,10 +1,13 @@
 package com.lead.rattrackerapp;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,10 +26,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView sightingList;
-    TextView sightingInfo;
     Button logOutButton;
-    Button mapButton;
-    Button reportButton;
+    FloatingActionButton mapButton;
+    FloatingActionButton reportButton;
     FirebaseAuth mAuth;
 
     DatabaseReference mDatabase;
@@ -44,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Get all of the user input buttons in order to later set listeners
         logOutButton = (Button) findViewById(R.id.button_log_out);
-        mapButton = (Button) findViewById(R.id.button_main_map);
-        reportButton = (Button) findViewById(R.id.button_reportSighting);
-        sightingInfo = (TextView) findViewById(R.id.sighting_info);
+        mapButton = (FloatingActionButton) findViewById(R.id.button_main_map);
+        reportButton = (FloatingActionButton) findViewById(R.id.button_reportSighting);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
         sightingList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -72,7 +73,13 @@ public class MainActivity extends AppCompatActivity {
                 rda.setClickListener(new RatDataAdapter.SightingClickListener() {
                     @Override
                     public void onItemClick(View v, int p) {
-                        sightingInfo.setText(currList.get(p).toString());
+                        if (findViewById(R.id.info_card).getVisibility() == View.GONE) {
+                            Sighting clickedSighting = currList.get(p);
+                            findViewById(R.id.info_card).setVisibility(View.VISIBLE);
+                            setTable(clickedSighting);
+                        } else {
+                            findViewById(R.id.info_card).setVisibility(View.GONE);
+                        }
                     }
                 });
                 sightingList.setAdapter(rda);
@@ -109,5 +116,34 @@ public class MainActivity extends AppCompatActivity {
                   startActivity(intent);
               }
           });
+    }
+
+    private void setTable(Sighting s) {
+        TextView key = (TextView) findViewById(R.id.info_card_key);
+        key.setText(String.valueOf(s.getId()));
+
+        TextView date = (TextView) findViewById(R.id.info_card_date);
+        date.setText(s.getDate());
+
+        TextView locType = (TextView) findViewById(R.id.info_card_location_type);
+        locType.setText(s.getLocationType());
+
+        TextView zip = (TextView) findViewById(R.id.info_card_zip);
+        zip.setText(s.getZip());
+
+        TextView address = (TextView) findViewById(R.id.info_card_address);
+        address.setText(s.getAddress());
+
+        TextView city = (TextView) findViewById(R.id.info_card_city);
+        city.setText(s.getCity());
+
+        TextView borough = (TextView) findViewById(R.id.info_card_borough);
+        borough.setText(s.getBorough().toString());
+
+        TextView lon = (TextView) findViewById(R.id.info_card_long);
+        lon.setText(String.valueOf(s.getLongitude()));
+
+        TextView lat = (TextView) findViewById(R.id.info_card_lat);
+        lat.setText(String.valueOf(s.getLatitude()));
     }
 }
