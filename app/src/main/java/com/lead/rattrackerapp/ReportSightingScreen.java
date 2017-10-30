@@ -189,6 +189,12 @@ public class ReportSightingScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Converts string format of date to a long
+     *
+     * @param date string format of date
+     * @return long value of date
+     */
     private long getLongDateFromDateString(String date) {
         SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
         try {

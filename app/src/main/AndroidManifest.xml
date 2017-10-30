@@ -47,7 +47,8 @@
         <activity
             android:name=".ReportSightingScreen"
             android:label="@string/title_activity_reports_sightings"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DateSelectionScreen"></activity>
     </application>
 
 </manifest>

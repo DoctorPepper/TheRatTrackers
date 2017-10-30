@@ -85,6 +85,23 @@ public class SightingList {
     }
 
     /**
+     * Gets a list of sightings within a date range
+     *
+     * @param start start date
+     * @param end end date
+     * @return the list of sightings within the range
+     */
+    public List<Sighting> getDateRangeDate(double start, double end) {
+        List dateRange = new ArrayList();
+        for (Sighting s : data) {
+            if (s.getLongDate() >= start && s.getLongDate() <= end) {
+                dateRange.add(s);
+            }
+        }
+        return dateRange;
+    }
+
+    /**
      * Gets a subset of the data
      *
      * @param start marks the start of the subset

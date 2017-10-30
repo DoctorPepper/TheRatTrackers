@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         Sighting s = sighting.getValue(Sighting.class);
                         SightingList.getInstance().addSighting(s);
                     }
-                final List<Sighting> currList = SightingList.getInstance().getSmallData(50);
+                final List<Sighting> currList = SightingList.getInstance().getData();
                 RatDataAdapter rda = new RatDataAdapter(MainActivity.this, currList);
                 rda.setClickListener(new RatDataAdapter.SightingClickListener() {
                     @Override
@@ -103,18 +103,18 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, DateSelectionScreen.class);
                 startActivity(intent);
             }
         });
         //Set report button listener in order to take user to report screen
-          reportButton.setOnClickListener(new View.OnClickListener() {
+        reportButton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
                   Intent intent = new Intent(MainActivity.this, ReportSightingScreen.class);
                   startActivity(intent);
               }
-          });
+        });
     }
 
     private void setTable(Sighting s) {

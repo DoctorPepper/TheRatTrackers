@@ -9,6 +9,7 @@
     <string name="text_sign_up">Sign up</string>
     <string name="button_sign_up">Sign me up!</string>
     <string name="text_account_type">Account Type:</string>
+    <string name="search">Search</string>
 
     <!-- Report Sightings -->
     <string name="reportAddress">Address</string>

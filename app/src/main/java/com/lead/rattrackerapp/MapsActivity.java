@@ -101,7 +101,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 startActivity(intent);
             }
         });
-        currList = SightingList.getInstance().getSmallData(100);
+        long start = getIntent().getLongExtra("start", 0);
+        long end = getIntent().getLongExtra("end", 0);
+        //System.err.println("From " + start + " to " + end);
+        currList = SightingList.getInstance().getDateRangeDate(start, end);
     }
 
 
