@@ -154,7 +154,7 @@ public class ReportSightingScreen extends AppCompatActivity {
             Sighting sighting = new Sighting(SightingList.getInstance().getNextKey(), dateString,
                     locType.getText().toString(), czip.getText().toString(),
                     addr.getText().toString(), city.getText().toString(),
-                    (Borough) boroughSpinner.getSelectedItem(), geoCoords[0], geoCoords[1], longDate);
+                    (Borough) boroughSpinner.getSelectedItem(), geoCoords[1], geoCoords[0], longDate);
             mDatabase.child("sighting").child(String.valueOf(sighting.getId())).setValue(sighting);
             Intent intent = new Intent(ReportSightingScreen.this, MainActivity.class);
             startActivity(intent);

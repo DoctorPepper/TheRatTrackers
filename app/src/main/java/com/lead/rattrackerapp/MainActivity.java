@@ -56,17 +56,17 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Set up database query to only include last 50 sightings
-        Query smallQuery = mDatabase.child("sighting").orderByChild("longDate").limitToLast(50);
+        Query smallQuery = mDatabase.child("sighting").orderByChild("longDate").limitToLast(200);
 
         //Add 'single value' listener in order to add all sightings to view upon opening main
         smallQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 SightingList.getInstance().reset();
-                    for (DataSnapshot sighting: dataSnapshot.getChildren()) {
-                        Sighting s = sighting.getValue(Sighting.class);
-                        SightingList.getInstance().addSighting(s);
-                    }
+                for (DataSnapshot sighting: dataSnapshot.getChildren()) {
+                    Sighting s = sighting.getValue(Sighting.class);
+                    SightingList.getInstance().addSighting(s);
+                }
                 final List<Sighting> currList = SightingList.getInstance().getData();
                 RatDataAdapter rda = new RatDataAdapter(MainActivity.this, currList);
                 rda.setClickListener(new RatDataAdapter.SightingClickListener() {

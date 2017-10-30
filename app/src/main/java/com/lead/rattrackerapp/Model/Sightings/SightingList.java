@@ -63,7 +63,7 @@ public class SightingList {
      * @return the data
      */
     public List getData() {
-        return data;
+        return getSmallData(data.size());
     }
 
     /**
@@ -78,7 +78,7 @@ public class SightingList {
             amount = data.size();
         }
         List smallData = new ArrayList(amount);
-        for (int i = data.size() - 1; i > (data.size() - amount + 1); i--) {
+        for (int i = data.size() - 1; i >= (data.size() - amount); i--) {
             smallData.add(data.get(i));
         }
         return smallData;
