@@ -1,9 +1,11 @@
 package com.lead.rattrackerapp;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
@@ -22,8 +24,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
-    LineChart lineChart;
-    Button backButton;
+    private LineChart lineChart;
+    private Button backButton;
+
+    private static String[] mNames = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
+                        "Sept", "Oct", "Nov", "Dec"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,13 @@ public class GraphActivity extends AppCompatActivity {
         LineData data = new LineData(dataset);
         //dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
         dataset.setDrawFilled(true);
+
+        lineChart.getLegend().setEnabled(false);
+        lineChart.getXAxis().setGranularity(1f);
+        lineChart.getAxisLeft().setGranularity(1f);
+        lineChart.getXAxis().setValueFormatter(new XAxisMonthValueFormatter(getMonthNamesArray(start, end)));
+
+
         lineChart.setData(data);
         lineChart.animateY(5000);
 
@@ -61,13 +73,26 @@ public class GraphActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Creates and returns a list of graph entries based on a passed in list
-     * of sightings
-     *
-     * @param sightings the list of sightings
-     * @return the list of graph entries
-     */
+    private static String[] getMonthNamesArray(long start, long end) {
+        Calendar startDate = new GregorianCalendar();
+        startDate.setTimeInMillis(start);
+        Calendar endDate = new GregorianCalendar();
+        endDate.setTimeInMillis(end);
+
+        int numMonths = 12 * (endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR))
+                + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH)) + 1;
+
+        int startMonth = startDate.get(Calendar.MONTH) + (startDate.get(Calendar.YEAR) * 12);
+        String[] monthNames = new String[numMonths];
+        monthNames = new String[numMonths];
+        for (int i = 0; i < monthNames.length; i++) {
+            int currMonth = (startDate.get(Calendar.MONTH) + i) % 12;
+            int currYear = ((startDate.get(Calendar.YEAR))) + (startDate.get(Calendar.MONTH) + i) / 12;
+            monthNames[i] = mNames[currMonth] + " " + currYear;
+        }
+        return monthNames;
+    }
+
     private static List<Entry> convertSightingListToEntries(List<Sighting> sightings,
                                                             long start, long end) {
         List<Entry> entries = new ArrayList<>();
@@ -79,7 +104,9 @@ public class GraphActivity extends AppCompatActivity {
 
         int numMonths = 12 * (endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR))
                 + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH)) + 1;
+
         int startMonth = startDate.get(Calendar.MONTH) + (startDate.get(Calendar.YEAR) * 12);
+
         HashMap<Integer, Integer> months = new HashMap<>(numMonths);
         Calendar tempCal = new GregorianCalendar();
         for (Sighting s : sightings) {
@@ -101,5 +128,24 @@ public class GraphActivity extends AppCompatActivity {
             }
         }
         return entries;
+    }
+
+    private class XAxisMonthValueFormatter implements IAxisValueFormatter {
+
+        private String[] monthNames;
+
+        public XAxisMonthValueFormatter(String[] values) {
+            this.monthNames = values;
+        }
+
+        @Override
+        public String getFormattedValue(float value, AxisBase axis) {
+            // "value" represents the position of the label on the axis (x or y)
+            return monthNames[(int) value];
+        }
+
+        /** this is only needed if numbers are returned, else return 0 */
+        //@Override
+        public int getDecimalDigits() { return 0; }
     }
 }
