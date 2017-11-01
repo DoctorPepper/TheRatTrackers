@@ -49,6 +49,15 @@ public class SightingList {
     }
 
     /**
+     * Returns the number of data elements in the list
+     *
+     * @return the size of data
+     */
+    public int size() {
+        return data.size();
+    }
+
+    /**
      * Get the next key we will use in the Database
      *
      * @return the next key
