@@ -107,10 +107,12 @@ public class ReportSightingScreen extends AppCompatActivity {
     /**
      * Gets the date from the DatePicker
      *
-     * @param datePicker the DatePicker object
      * @return the date of the calender
      */
-    private Date getDateFromPicker(DatePicker datePicker) {
+    private Date getDateFromPicker() {
+        if (datePicker == null) {
+            return null;
+        }
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
         int year =  datePicker.getYear();
@@ -136,7 +138,7 @@ public class ReportSightingScreen extends AppCompatActivity {
         } else {
             //Get date from datepicker
             //TODO: Incorporate timePicker to get dateTime
-            Date date = getDateFromPicker(datePicker);
+            Date date = getDateFromPicker();
             String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss a", date).toString();
             //Try to get geoCoordinates from Address String
             double[] geoCoords = new double[2];
