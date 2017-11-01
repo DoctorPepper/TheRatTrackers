@@ -26,6 +26,10 @@ import java.util.List;
 public class GraphActivity extends AppCompatActivity {
     private LineChart lineChart;
     private Button backButton;
+    private Calendar startDate;
+    private Calendar endDate;
+    private long start;
+    private long end;
 
     private static String[] mNames = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
                         "Sept", "Oct", "Nov", "Dec"};
@@ -37,14 +41,17 @@ public class GraphActivity extends AppCompatActivity {
 
         lineChart = (LineChart) findViewById(R.id.graph);
         backButton = (Button) findViewById(R.id.backButton);
-        long start = getIntent().getLongExtra("start", 0);
-        long end = getIntent().getLongExtra("end", 0);
-        Calendar st = new GregorianCalendar();
-        st.setTimeInMillis(start);
-        Calendar en = new GregorianCalendar();
-        en.setTimeInMillis(end);
+
+        //initialize calendars
+        start = getIntent().getLongExtra("start", 0);
+        end = getIntent().getLongExtra("end", 0);
+        startDate = new GregorianCalendar();
+        startDate.setTimeInMillis(start);
+        endDate = new GregorianCalendar();
+        endDate.setTimeInMillis(end);
+
         List<Sighting> sightingsToDisplay = SightingList.getInstance().getDateRangeDate(start, end);
-        List<Entry> entries = convertSightingListToEntries(sightingsToDisplay, start, end);
+        List<Entry> entries = convertSightingListToEntries(sightingsToDisplay);
 
         LineDataSet dataset = new LineDataSet(entries, "Number of Sightings");
         LineData data = new LineData(dataset);
@@ -54,15 +61,22 @@ public class GraphActivity extends AppCompatActivity {
         lineChart.getLegend().setEnabled(false);
         lineChart.getXAxis().setGranularity(1f);
         lineChart.getAxisLeft().setGranularity(1f);
-        lineChart.getXAxis().setValueFormatter(new XAxisMonthValueFormatter(getMonthNamesArray(start, end)));
+        lineChart.getAxisRight().setGranularity(1f);
+        lineChart.getXAxis().setValueFormatter(new XAxisMonthValueFormatter(getMonthNamesArray()));
 
+        lineChart.moveViewToX(0f);
+        //lineChart.moveViewTo(0f, -0.5f, );
 
         lineChart.setData(data);
         lineChart.animateY(5000);
 
+
         lineChart.getDescription().setText("Number of Sightings per Month between "
-                + (st.get(Calendar.MONTH) + 1) + "/" + st.get(Calendar.DAY_OF_MONTH) + "/" + st.get(Calendar.YEAR)
-                + " and " + (en.get(Calendar.MONTH) + 1) + "/" + en.get(Calendar.DAY_OF_MONTH) + "/" + en.get(Calendar.YEAR));
+                + (startDate.get(Calendar.MONTH) + 1) + "/" + startDate.get(Calendar.DAY_OF_MONTH)
+                + "/" + startDate.get(Calendar.YEAR)
+                + " and "
+                + (endDate.get(Calendar.MONTH) + 1) + "/" + endDate.get(Calendar.DAY_OF_MONTH)
+                + "/" + endDate.get(Calendar.YEAR));
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,18 +87,21 @@ public class GraphActivity extends AppCompatActivity {
         });
     }
 
-    private static String[] getMonthNamesArray(long start, long end) {
-        Calendar startDate = new GregorianCalendar();
-        startDate.setTimeInMillis(start);
-        Calendar endDate = new GregorianCalendar();
-        endDate.setTimeInMillis(end);
-
+    /**
+     * Creates an array of month and year names within the bounds of the start and end
+     * dates that will be the x axis values of the graph
+     *
+     * @return the array of month and year names
+     */
+    private String[] getMonthNamesArray() {
         int numMonths = 12 * (endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR))
-                + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH)) + 1;
+                + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH));
 
-        int startMonth = startDate.get(Calendar.MONTH) + (startDate.get(Calendar.YEAR) * 12);
+        if (numMonths < 2) {
+            numMonths = 2;
+        }
+
         String[] monthNames = new String[numMonths];
-        monthNames = new String[numMonths];
         for (int i = 0; i < monthNames.length; i++) {
             int currMonth = (startDate.get(Calendar.MONTH) + i) % 12;
             int currYear = ((startDate.get(Calendar.YEAR))) + (startDate.get(Calendar.MONTH) + i) / 12;
@@ -93,17 +110,22 @@ public class GraphActivity extends AppCompatActivity {
         return monthNames;
     }
 
-    private static List<Entry> convertSightingListToEntries(List<Sighting> sightings,
-                                                            long start, long end) {
+    /**
+     * Creates a list of plot-able entries by counting up the number of sightings by month
+     * within the start and end dates
+     *
+     * @param sightings the list of sightings
+     * @return the list of entries to plot
+     */
+    private List<Entry> convertSightingListToEntries(List<Sighting> sightings) {
         List<Entry> entries = new ArrayList<>();
 
-        Calendar startDate = new GregorianCalendar();
-        startDate.setTimeInMillis(start);
-        Calendar endDate = new GregorianCalendar();
-        endDate.setTimeInMillis(end);
-
         int numMonths = 12 * (endDate.get(Calendar.YEAR) - startDate.get(Calendar.YEAR))
-                + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH)) + 1;
+                + (endDate.get(Calendar.MONTH) - startDate.get(Calendar.MONTH));
+
+        if (numMonths < 2) {
+            numMonths = 2;
+        }
 
         int startMonth = startDate.get(Calendar.MONTH) + (startDate.get(Calendar.YEAR) * 12);
 
@@ -140,12 +162,7 @@ public class GraphActivity extends AppCompatActivity {
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
-            // "value" represents the position of the label on the axis (x or y)
             return monthNames[(int) value];
         }
-
-        /** this is only needed if numbers are returned, else return 0 */
-        //@Override
-        public int getDecimalDigits() { return 0; }
     }
 }

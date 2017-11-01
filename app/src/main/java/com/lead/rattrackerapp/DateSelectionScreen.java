@@ -54,7 +54,7 @@ public class DateSelectionScreen extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(DateSelectionScreen.this, GraphActivity.class);
                         intent.putExtra("start", getLongDateFromPicker(startDateInput));
-                        intent.putExtra("end", getLongDateFromPicker(endDateInput));
+                        intent.putExtra("end", getLongDateFromPicker(endDateInput) + 86400000); // + 1 day in milliseconds so endate is inclusive
                         startActivity(intent);
                     }
                 } else {
