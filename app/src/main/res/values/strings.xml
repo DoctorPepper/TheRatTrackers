@@ -10,6 +10,8 @@
     <string name="button_sign_up">Sign me up!</string>
     <string name="text_account_type">Account Type:</string>
     <string name="search">Search</string>
+    <string name="back">Back</string>
+    <string name="end_date_greater_start_date">The end date must be after the start date</string>
 
     <!-- Report Sightings -->
     <string name="reportAddress">Address</string>

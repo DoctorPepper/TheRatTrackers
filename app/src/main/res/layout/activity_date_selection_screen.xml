@@ -8,8 +8,8 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select a start and end date of sightings to display on the map"
-        android:layout_weight="0.10" />
+        android:layout_weight="0.10"
+        android:text="Select a start and end date of sightings to display" />
 
     <LinearLayout
         android:layout_width="match_parent"

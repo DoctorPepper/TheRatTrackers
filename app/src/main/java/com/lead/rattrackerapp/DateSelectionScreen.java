@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,11 +21,14 @@ public class DateSelectionScreen extends AppCompatActivity {
     DatePicker endDateInput;
     Button searchButton;
     Button cancelButton;
+    String target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_selection_screen);
+
+        target = getIntent().getStringExtra("destination");
 
         startDateInput = (DatePicker) findViewById(R.id.date_start_input);
         endDateInput = (DatePicker) findViewById(R.id.date_end_input);
@@ -38,14 +42,25 @@ public class DateSelectionScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DateSelectionScreen.this, MapsActivity.class);
-                intent.putExtra("start", getLongDateFromPicker(startDateInput));
-                intent.putExtra("end", getLongDateFromPicker(endDateInput));
-                startActivity(intent);
+                if (getLongDateFromPicker(endDateInput) >= getLongDateFromPicker(startDateInput)){
+                    if (target.equals("map")) {
+                        Intent intent = new Intent(DateSelectionScreen.this, MapsActivity.class);
+                        intent.putExtra("start", getLongDateFromPicker(startDateInput));
+                        intent.putExtra("end", getLongDateFromPicker(endDateInput));
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(DateSelectionScreen.this, GraphActivity.class);
+                        intent.putExtra("start", getLongDateFromPicker(startDateInput));
+                        intent.putExtra("end", getLongDateFromPicker(endDateInput));
+                        startActivity(intent);
+                    }
+                } else {
+                    Toast.makeText(DateSelectionScreen.this, R.string.end_date_greater_start_date,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
