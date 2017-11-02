@@ -70,7 +70,8 @@ public class SignUpScreen extends AppCompatActivity {
                 try {
                     String password = passwordInput.getEditText().getText().toString();
                     String confirm = passwordConfirm.getEditText().getText().toString();
-                    if (password.equals(confirm)) {
+                    if (password != null && password.equals(confirm)
+                            && emailInput.getText().toString() != null) {
                         createFireAccount(emailInput.getText().toString(),
                                 passwordInput.getEditText().getText().toString());
                     } else {
