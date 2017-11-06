@@ -25,7 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView sightingList;
     Button logOutButton;
-    Button graphButton;
+    FloatingActionButton graphButton;
     FloatingActionButton mapButton;
     FloatingActionButton reportButton;
     FirebaseAuth mAuth;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Get all of the user input buttons in order to later set listeners
         logOutButton = (Button) findViewById(R.id.button_log_out);
-        graphButton = (Button) findViewById(R.id.button_graph);
+        graphButton = (FloatingActionButton) findViewById(R.id.button_graph);
         mapButton = (FloatingActionButton) findViewById(R.id.button_main_map);
         reportButton = (FloatingActionButton) findViewById(R.id.button_reportSighting);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
