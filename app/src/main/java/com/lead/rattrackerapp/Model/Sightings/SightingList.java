@@ -87,11 +87,12 @@ public class SightingList {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount cannot be negative");
         }
-        if (data.size() < amount) {
-            amount = data.size();
+        int num = amount;
+        if (amount > data.size()) {
+            num = data.size();
         }
-        List smallData = new ArrayList(amount);
-        for (int i = data.size() - 1; i >= (data.size() - amount); i--) {
+        List smallData = new ArrayList(num);
+        for (int i = data.size() - 1; i >= (data.size() - num); i--) {
             smallData.add(data.get(i));
         }
         return smallData;
@@ -134,6 +135,22 @@ public class SightingList {
                 subData.add(data.get(i));
             }
             return subData;
+        }
+    }
+
+    /**
+     * Creates a new instance of SightingList for use in testing
+     *
+     * @return a new instance of the SightingList class
+     */
+    public static SightingList create_Instance() {
+        return new SightingList(true);
+    }
+
+    private SightingList(boolean test) {
+        data = new ArrayList<>();
+        if (!test) {
+            mDatabase = FirebaseDatabase.getInstance().getReference();
         }
     }
 }
