@@ -78,11 +78,15 @@ public class SightingList {
     /**
      * Get a small amount of data
      *
+     * @throws IllegalArgumentException if amount is negative
      * @param amount the amount of data to get,
      *               which is less than the total size of data
      * @return the small amount of data
      */
     public List<Sighting> getSmallData(int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative");
+        }
         if (data.size() < amount) {
             amount = data.size();
         }
