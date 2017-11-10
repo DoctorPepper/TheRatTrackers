@@ -256,11 +256,15 @@ public class Sighting {
         if (Double.compare(sighting.longitude, longitude) != 0) return false;
         if (Double.compare(sighting.latitude, latitude) != 0) return false;
         if (date != null ? !date.equals(sighting.date) : sighting.date != null) return false;
-        if (locType != null ? !locType.equals(sighting.locType) : sighting.locType != null)
+        if (locType != null ? !locType.equals(sighting.locType) : sighting.locType != null) {
             return false;
-        if (address != null ? !address.equals(sighting.address) : sighting.address != null)
+        }
+        if (address != null ? !address.equals(sighting.address) : sighting.address != null) {
             return false;
-        if (city != null ? !city.equals(sighting.city) : sighting.city != null) return false;
+        }
+        if (city != null ? !city.equals(sighting.city) : sighting.city != null) {
+            return false;
+        }
         return borough == sighting.borough;
 
     }

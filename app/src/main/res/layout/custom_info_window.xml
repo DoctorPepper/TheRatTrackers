@@ -45,7 +45,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/time_icon"/>
+                android:background="@drawable/time_icon"
+                android:contentDescription="clock"/>
             <TextView
                 android:id="@+id/dateTxt"
                 android:layout_width="wrap_content"
@@ -53,7 +54,7 @@
                 android:text="Amixx XX Soluxxxxx"
                 android:textSize="10dip"
                 android:gravity="center_vertical"
-                android:textColor="#000000"/>
+                android:textColor="#000000" />
 
         </LinearLayout>
 
@@ -67,7 +68,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/map_icon"/>
+                android:background="@drawable/map_icon"
+                android:contentDescription="flag"/>
             <TextView
                 android:id="@+id/addressTxt"
                 android:layout_width="wrap_content"
@@ -89,7 +91,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/city_icon"/>
+                android:background="@drawable/city_icon"
+                android:contentDescription="city"/>
             <TextView
                 android:id="@+id/cityTxt"
                 android:layout_width="wrap_content"
@@ -111,7 +114,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/city_icon"/>
+                android:background="@drawable/city_icon"
+                android:contentDescription="city"/>
             <TextView
                 android:id="@+id/boroughTxt"
                 android:layout_width="wrap_content"
@@ -133,7 +137,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/globe_icon"/>
+                android:background="@drawable/globe_icon"
+                android:contentDescription="globe"/>
             <TextView
                 android:id="@+id/latitudeTxt"
                 android:layout_width="wrap_content"
@@ -155,7 +160,8 @@
                 android:layout_width="25dip"
                 android:layout_height="25dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/globe_icon"/>
+                android:background="@drawable/globe_icon"
+                android:contentDescription="globe"/>
             <TextView
                 android:id="@+id/longitudeTxt"
                 android:layout_width="wrap_content"

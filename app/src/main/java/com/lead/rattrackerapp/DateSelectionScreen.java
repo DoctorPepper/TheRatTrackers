@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
 
 public class DateSelectionScreen extends AppCompatActivity {
 
@@ -54,7 +53,8 @@ public class DateSelectionScreen extends AppCompatActivity {
                     } else {
                         Intent intent = new Intent(DateSelectionScreen.this, GraphActivity.class);
                         intent.putExtra("start", getLongDateFromPicker(startDateInput));
-                        intent.putExtra("end", getLongDateFromPicker(endDateInput) + 86400000); // + 1 day in milliseconds so endate is inclusive
+                        intent.putExtra("end", getLongDateFromPicker(endDateInput) + 86400000);
+                                    // + 1 day in milliseconds so end date is inclusive
                         startActivity(intent);
                     }
                 } else {

@@ -6,7 +6,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
@@ -24,12 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class GraphActivity extends AppCompatActivity {
-    private LineChart lineChart;
-    private Button backButton;
     private Calendar startDate;
     private Calendar endDate;
-    private long start;
-    private long end;
 
     private static String[] mNames = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
                         "Sept", "Oct", "Nov", "Dec"};
@@ -39,12 +34,12 @@ public class GraphActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
-        lineChart = (LineChart) findViewById(R.id.graph);
-        backButton = (Button) findViewById(R.id.backButton);
+        LineChart lineChart = (LineChart) findViewById(R.id.graph);
+        Button backButton = (Button) findViewById(R.id.backButton);
 
         //initialize calendars
-        start = getIntent().getLongExtra("start", 0);
-        end = getIntent().getLongExtra("end", 0);
+        long start = getIntent().getLongExtra("start", 0);
+        long end = getIntent().getLongExtra("end", 0);
         startDate = new GregorianCalendar();
         startDate.setTimeInMillis(start);
         endDate = new GregorianCalendar();

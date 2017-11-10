@@ -37,26 +37,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // Getting view from the layout file info_window_layout
             v = getLayoutInflater().inflate(R.layout.custom_info_window, null);
 
-            TextView sightingNo = (TextView) v.findViewById(R.id.sightingNo);
+            TextView sightingNo = v.findViewById(R.id.sightingNo);
             sightingNo.setText(marker.getTitle());
 
-            TextView dateTxt = (TextView) v.findViewById(R.id.dateTxt);
+            TextView dateTxt = v.findViewById(R.id.dateTxt);
             dateTxt.setText("Date: " + currList.get((Integer) marker.getTag()).getDate());
 
             // Getting reference to the TextView to set latitude
-            TextView addressTxt = (TextView) v.findViewById(R.id.addressTxt);
+            TextView addressTxt = v.findViewById(R.id.addressTxt);
             addressTxt.setText("Address: " + currList.get(((Integer) marker.getTag())).getAddress());
 
-            TextView cityTxt = (TextView) v.findViewById(R.id.cityTxt);
+            TextView cityTxt =  v.findViewById(R.id.cityTxt);
             cityTxt.setText("City: " + currList.get(((Integer) marker.getTag())).getCity());
 
-            TextView boroughTxt = (TextView) v.findViewById(R.id.boroughTxt);
+            TextView boroughTxt = v.findViewById(R.id.boroughTxt);
             boroughTxt.setText("Borough: " + currList.get(((Integer) marker.getTag())).getBorough().toString());
 
-            TextView latitudeTxt = (TextView) v.findViewById(R.id.latitudeTxt);
+            TextView latitudeTxt = v.findViewById(R.id.latitudeTxt);
             latitudeTxt.setText("Latitude: " + Double.toString(currList.get(((Integer) marker.getTag())).getLatitude()));
 
-            TextView longitudeTxt = (TextView) v.findViewById(R.id.longitudeTxt);
+            TextView longitudeTxt = v.findViewById(R.id.longitudeTxt);
             longitudeTxt.setText("Longitude: " + Double.toString(currList.get(((Integer) marker.getTag())).getLongitude()));
 
         } catch (Exception ev) {
@@ -69,8 +69,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     private List<Sighting> currList;
-
-    private Button reportButton;
 
     /**
      * Initialize the activity
@@ -88,7 +86,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
 
-        reportButton = (Button) findViewById(R.id.report_mapscreen);
+        Button reportButton = findViewById(R.id.report_mapscreen);
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

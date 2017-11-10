@@ -26,12 +26,10 @@ public class SightingList {
 
     private List<Sighting> data;
     private int nextKey = 0;
-    private DatabaseReference mDatabase;
-
 
     private SightingList() {
         data = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void reset() {
@@ -71,7 +69,7 @@ public class SightingList {
      *
      * @return the data
      */
-    public List getData() {
+    public List<Sighting> getData() {
         return getSmallData(data.size());
     }
 
@@ -91,7 +89,7 @@ public class SightingList {
         if (amount > data.size()) {
             num = data.size();
         }
-        List smallData = new ArrayList(num);
+        List<Sighting> smallData = new ArrayList<>(num);
         for (int i = data.size() - 1; i >= (data.size() - num); i--) {
             smallData.add(data.get(i));
         }
@@ -106,7 +104,7 @@ public class SightingList {
      * @return the list of sightings within the range
      */
     public List<Sighting> getDateRangeDate(double start, double end) {
-        List dateRange = new ArrayList();
+        List<Sighting> dateRange = new ArrayList<>();
         for (Sighting s : data) {
             if (s.getLongDate() >= start && s.getLongDate() <= end) {
                 dateRange.add(s);
@@ -124,13 +122,13 @@ public class SightingList {
      */
     public List<Sighting> getSubsetData(int start, int end) {
         if ((end - start) < data.size()) {
-            List subData = new ArrayList(data.size());
+            List<Sighting> subData = new ArrayList<>(data.size());
             for (int i = 0; i < data.size(); i++) {
                 subData.add(data.get(i));
             }
             return subData;
         } else {
-            List subData = new ArrayList(end - start);
+            List<Sighting> subData = new ArrayList<>(end - start);
             for (int i = start; i < end; i++) {
                 subData.add(data.get(i));
             }
@@ -144,13 +142,6 @@ public class SightingList {
      * @return a new instance of the SightingList class
      */
     public static SightingList create_Instance() {
-        return new SightingList(true);
-    }
-
-    private SightingList(boolean test) {
-        data = new ArrayList<>();
-        if (!test) {
-            mDatabase = FirebaseDatabase.getInstance().getReference();
-        }
+        return new SightingList();
     }
 }

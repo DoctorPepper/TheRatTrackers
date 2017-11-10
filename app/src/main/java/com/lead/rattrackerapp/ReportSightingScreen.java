@@ -31,9 +31,6 @@ import java.util.List;
 
 public class ReportSightingScreen extends AppCompatActivity {
 
-    private Button submitButton;
-    private Button cancelButton;
-    private String TAG = "ReportingScreen";
     private TextInputEditText addr;
     private TextInputEditText city;
     private TextInputEditText czip;
@@ -65,8 +62,8 @@ public class ReportSightingScreen extends AppCompatActivity {
         boroughSpinner = (Spinner) findViewById(R.id.borough_spinner);
         boroughSpinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
                 Borough.values()));
-        submitButton = (Button) findViewById(R.id.submitReport);
-        cancelButton = (Button) findViewById(R.id.cancelReport);
+        Button submitButton = (Button) findViewById(R.id.submitReport);
+        Button cancelButton = (Button) findViewById(R.id.cancelReport);
 
         //Get database reference
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -88,6 +85,7 @@ public class ReportSightingScreen extends AppCompatActivity {
         });
         //If we got here through the maps activity, the bundle 'b' will have useful information.
         //If b is not null, get that information out and set it as the defaults
+        String TAG = "ReportingScreen";
         if (b != null) {
             double lat = b.getDouble("Lat");
             double lng = b.getDouble("Lng");

@@ -29,7 +29,8 @@ tools:context="com.lead.rattrackerapp.MapsActivity">
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/pin"/>
+        android:src="@drawable/pin"
+        android:contentDescription="center pin"/>
 
 
 

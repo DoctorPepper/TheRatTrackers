@@ -33,8 +33,6 @@ import java.util.List;
 @PrepareForTest({ FirebaseDatabase.class})
 public class SightingListSmallDataTests {
 
-    private DatabaseReference mockedDatabaseReference;
-
     static SightingList real;
     List<Sighting> fullTestList;
     List<Sighting> emptyTestList;
@@ -43,13 +41,13 @@ public class SightingListSmallDataTests {
 
     @Before
     public void setUp() throws Exception {
-        mockedDatabaseReference = Mockito.mock(DatabaseReference.class);
+        DatabaseReference mockedDatabaseReference = Mockito.mock(DatabaseReference.class);
         FirebaseDatabase mockedFirebaseDatabase = Mockito.mock(FirebaseDatabase.class);
         when(mockedFirebaseDatabase.getReference()).thenReturn(mockedDatabaseReference);
         PowerMockito.mockStatic(FirebaseDatabase.class);
         when(FirebaseDatabase.getInstance()).thenReturn(mockedFirebaseDatabase);
 
-        real = SightingList.getInstance();
+        real = SightingList.create_Instance();
 
         fullTestList = new ArrayList<>();
         emptyTestList = new ArrayList<>();
@@ -73,7 +71,7 @@ public class SightingListSmallDataTests {
     @Test
     public void testAmountNegative() {
         try {
-            List<Sighting> actual = real.getSmallData(-1);
+            real.getSmallData(-1);
         } catch (Exception e) {
             assertEquals("Incorrect exception thrown when amount"
                             + " was negative",
