@@ -23,12 +23,12 @@
     <string name="description_flag_logo">flag logo</string>
     <string name="description_city_logo">city logo</string>
     <string name="description_globe_logo">globe logo</string>
-    <string name="date_label">Date: </string>
-    <string name="address_label">Address: </string>
-    <string name="city_label">City: </string>
-    <string name="borough_label">Borough: </string>
-    <string name="lat_label">Latitude: </string>
-    <string name="long_label">Longitude: </string>
+    <string name="date_label">Date: %s</string>
+    <string name="address_label">Address: %s</string>
+    <string name="city_label">City: %s</string>
+    <string name="borough_label">Borough: %s</string>
+    <string name="lat_label">Latitude: %s</string>
+    <string name="long_label">Longitude: %s</string>
 
     <!-- Report Sightings -->
     <string name="reportAddress">Address</string>

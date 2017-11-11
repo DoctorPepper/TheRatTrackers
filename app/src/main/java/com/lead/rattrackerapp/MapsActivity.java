@@ -21,6 +21,7 @@ import com.lead.rattrackerapp.Model.Sightings.Sighting;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, InfoWindowAdapter {
 
@@ -43,29 +44,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             sightingNo.setText(marker.getTitle());
 
             TextView dateTxt = v.findViewById(R.id.dateTxt);
-            dateTxt.setText(getResources().getString(R.string.date_label)
-                    + currList.get((Integer) marker.getTag()).getDate());
+            dateTxt.setText(String.format(Locale.US, getResources().getString(R.string.date_label),
+                    currList.get((Integer) marker.getTag()).getDate()));
 
             // Getting reference to the TextView to set latitude
             TextView addressTxt = v.findViewById(R.id.addressTxt);
-            addressTxt.setText(getResources().getString(R.string.address_label)
-                    + currList.get(((Integer) marker.getTag())).getAddress());
+            addressTxt.setText(String.format(Locale.US, getResources().getString(R.string.address_label),
+                    currList.get(((Integer) marker.getTag())).getAddress()));
 
             TextView cityTxt =  v.findViewById(R.id.cityTxt);
-            cityTxt.setText(getResources().getString(R.string.city_label)
-                    + currList.get(((Integer) marker.getTag())).getCity());
+            cityTxt.setText(String.format(Locale.US, getResources().getString(R.string.city_label),
+                    currList.get(((Integer) marker.getTag())).getCity()));
 
             TextView boroughTxt = v.findViewById(R.id.boroughTxt);
-            boroughTxt.setText(getResources().getString(R.string.borough_label)
-                    + currList.get(((Integer) marker.getTag())).getBorough().toString());
+            boroughTxt.setText(String.format(Locale.US, getResources().getString(R.string.borough_label),
+                    currList.get(((Integer) marker.getTag())).getBorough().toString()));
 
             TextView latitudeTxt = v.findViewById(R.id.latitudeTxt);
-            latitudeTxt.setText(getResources().getString(R.string.lat_label)
-                    + Double.toString(currList.get(((Integer) marker.getTag())).getLatitude()));
+            latitudeTxt.setText(String.format(Locale.US, getResources().getString(R.string.lat_label),
+                    Double.toString(currList.get(((Integer) marker.getTag())).getLatitude())));
 
             TextView longitudeTxt = v.findViewById(R.id.longitudeTxt);
-            longitudeTxt.setText(getResources().getString(R.string.long_label)
-                    + Double.toString(currList.get(((Integer) marker.getTag())).getLongitude()));
+            longitudeTxt.setText(String.format(Locale.US, getResources().getString(R.string.long_label),
+                    Double.toString(currList.get(((Integer) marker.getTag())).getLongitude())));
 
         } catch (Exception ev) {
             System.out.print(ev.getMessage());
