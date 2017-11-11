@@ -2,175 +2,164 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingTop="5dip"
     android:paddingStart="10dip"
     android:paddingEnd="20dip"
     android:paddingBottom="25dip">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/sightingNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="2dip"
-        android:layout_gravity="center_vertical">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-        <LinearLayout
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/time_icon"
+            android:contentDescription="@string/description_clock"/>
+        <TextView
+            android:id="@+id/dateTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/sightingNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/time_icon"
-                android:contentDescription="@string/description_clock"/>
-            <TextView
-                android:id="@+id/dateTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/amixx_xx_soluxxxx"
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/map_icon"
-                android:contentDescription="@string/description_flag_logo"/>
-            <TextView
-                android:id="@+id/addressTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/city_icon"
-                android:contentDescription="@string/description_city_logo"/>
-            <TextView
-                android:id="@+id/cityTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/city_icon"
-                android:contentDescription="@string/description_city_logo"/>
-            <TextView
-                android:id="@+id/boroughTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/globe_icon"
-                android:contentDescription="@string/description_globe_logo"/>
-            <TextView
-                android:id="@+id/latitudeTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="25dip"
-                android:layout_height="25dip"
-                android:layout_marginStart="5dip"
-                android:background="@drawable/globe_icon"
-                android:contentDescription="@string/description_globe_logo"/>
-            <TextView
-                android:id="@+id/longitudeTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="12sp"
-                android:gravity="center_vertical"
-                android:textColor="#000000"/>
-
-        </LinearLayout>
+            android:text="@string/amixx_xx_soluxxxx"
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/map_icon"
+            android:contentDescription="@string/description_flag_logo"/>
+        <TextView
+            android:id="@+id/addressTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/city_icon"
+            android:contentDescription="@string/description_city_logo"/>
+        <TextView
+            android:id="@+id/cityTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/city_icon"
+            android:contentDescription="@string/description_city_logo"/>
+        <TextView
+            android:id="@+id/boroughTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/globe_icon"
+            android:contentDescription="@string/description_globe_logo"/>
+        <TextView
+            android:id="@+id/latitudeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_marginStart="5dip"
+            android:background="@drawable/globe_icon"
+            android:contentDescription="@string/description_globe_logo"/>
+        <TextView
+            android:id="@+id/longitudeTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:gravity="center_vertical"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
 </LinearLayout>
