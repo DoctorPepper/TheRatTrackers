@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     /**
      * Example: asserts if addition gives correct answer
-     * @throws Exception
+     * @throws Exception .
      */
     @Test
     public void addition_isCorrect() throws Exception {
