@@ -6,6 +6,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -64,10 +65,10 @@ public class SignUpScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    String password = passwordInput.getEditText().getText().toString();
-                    String confirm = passwordConfirm.getEditText().getText().toString();
-                    if (password != null && password.equals(confirm)
-                            && emailInput.getText().toString() != null) {
+                    Editable password = passwordInput.getEditText().getText();
+                    Editable confirm = passwordConfirm.getEditText().getText();
+                    if (password != null && password.toString().equals(confirm.toString())
+                            && emailInput.getText() != null) {
                         createFireAccount(emailInput.getText().toString(),
                                 passwordInput.getEditText().getText().toString());
                     } else {

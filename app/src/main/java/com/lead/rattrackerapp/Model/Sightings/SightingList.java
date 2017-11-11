@@ -1,8 +1,5 @@
 package com.lead.rattrackerapp.Model.Sightings;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +26,6 @@ public class SightingList {
 
     private SightingList() {
         data = new ArrayList<>();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     /**

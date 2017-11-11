@@ -32,7 +32,6 @@ public class SightingListDateRangeTest {
 
     private static SightingList real;
     private List<Sighting> fullTestList;
-    private List<Sighting> emptyTestList;
     private List<Sighting> halfTestList;
     private List<Sighting> sizeOneTestList;
 
@@ -51,7 +50,6 @@ public class SightingListDateRangeTest {
         real = SightingList.create_Instance();
 
         fullTestList = new ArrayList<>();
-        emptyTestList = new ArrayList<>();
         halfTestList = new ArrayList<>();
         sizeOneTestList = new ArrayList<>();
         real.reset();
