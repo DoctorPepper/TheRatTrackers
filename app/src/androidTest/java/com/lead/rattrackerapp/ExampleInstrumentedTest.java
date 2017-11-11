@@ -19,7 +19,7 @@ public class ExampleInstrumentedTest {
 
     /**
      * Uses the context of the app under test.
-     * @throws Exception
+     * @throws Exception .
      */
     @Test
     public void useAppContext() throws Exception {

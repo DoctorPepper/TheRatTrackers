@@ -41,7 +41,7 @@ public class SightingListSmallDataTests {
 
     /**
      * Sets up tests
-     * @throws Exception
+     * @throws Exception .
      */
     @Before
     public void setUp() throws Exception {
