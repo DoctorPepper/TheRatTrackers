@@ -13,6 +13,7 @@ import com.lead.rattrackerapp.Model.Sightings.SightingList;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.Button;
 
@@ -124,19 +125,19 @@ public class GraphActivity extends AppCompatActivity {
 
         int startMonth = startDate.get(Calendar.MONTH) + (startDate.get(Calendar.YEAR) * 12);
 
-        HashMap<Integer, Integer> months = new HashMap<>(numMonths);
+        SparseIntArray months = new SparseIntArray(numMonths);
         Calendar tempCal = new GregorianCalendar();
         for (Sighting s : sightings) {
             tempCal.setTimeInMillis(s.getLongDate());
             int m = (tempCal.get(Calendar.MONTH) + (tempCal.get(Calendar.YEAR) * 12)) - startMonth;
-            if (!(months.containsKey(m))) {
+            if (months.get(m, -1) < 0) {
                 months.put(m, 1);
             } else {
                 months.put(m, months.get(m) + 1);
             }
         }
         for (int i = 0; i < numMonths; i++) {
-            if (months.containsKey(i)) {
+            if (months.get(i, -1) >= 0) {
                 entries.add(new Entry(i, months.get(i)));
                 System.err.println(months.get(i) + " at month " + i);
             } else {
@@ -151,7 +152,7 @@ public class GraphActivity extends AppCompatActivity {
 
         private final String[] monthNames;
 
-        public XAxisMonthValueFormatter(String[] values) {
+        XAxisMonthValueFormatter(String[] values) {
             this.monthNames = values;
         }
 
