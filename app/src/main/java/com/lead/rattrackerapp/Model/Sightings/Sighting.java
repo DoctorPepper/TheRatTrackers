@@ -250,22 +250,28 @@ public class Sighting {
 
         Sighting sighting = (Sighting) o;
 
-        if (id != sighting.id) return false;
-        if (zip != null ? !zip.equals(sighting.zip) : sighting.zip != null)
-            return false;
-        if (Double.compare(sighting.longitude, longitude) != 0) return false;
-        if (Double.compare(sighting.latitude, latitude) != 0) return false;
-        if (date != null ? !date.equals(sighting.date) : sighting.date != null) return false;
-        if (locType != null ? !locType.equals(sighting.locType) : sighting.locType != null) {
-            return false;
-        }
-        if (address != null ? !address.equals(sighting.address) : sighting.address != null) {
-            return false;
-        }
-        if (city != null ? !city.equals(sighting.city) : sighting.city != null) {
-            return false;
-        }
-        return borough == sighting.borough;
+//        if (id != sighting.id) return false;
+//        if (zip != null ? !zip.equals(sighting.zip) : sighting.zip != null)
+//            return false;
+//        if (Double.compare(sighting.longitude, longitude) != 0) return false;
+//        if (Double.compare(sighting.latitude, latitude) != 0) return false;
+//        if (date != null ? !date.equals(sighting.date) : sighting.date != null) return false;
+//        if (locType != null ? !locType.equals(sighting.locType) : sighting.locType != null) {
+//            return false;
+//        }
+//        if (address != null ? !address.equals(sighting.address) : sighting.address != null) {
+//            return false;
+//        }
+
+        return (id == sighting.id) &&
+                (zip != null ? zip.equals(sighting.zip) : sighting.zip == null) &&
+                (Double.compare(sighting.longitude, longitude) == 0) &&
+                (Double.compare(sighting.latitude, latitude) == 0) &&
+                (date != null ? date.equals(sighting.date) : sighting.date == null) &&
+                (locType != null ? locType.equals(sighting.locType) : sighting.locType == null) &&
+                (address != null ? address.equals(sighting.address) : sighting.address == null) &&
+                (city != null ? city.equals(sighting.city) : sighting.city == null)
+                && borough == sighting.borough;
 
     }
 

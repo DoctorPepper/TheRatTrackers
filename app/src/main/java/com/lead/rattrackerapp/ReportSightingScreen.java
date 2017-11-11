@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReportSightingScreen extends AppCompatActivity {
 
@@ -135,7 +136,6 @@ public class ReportSightingScreen extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         } else {
             //Get date from datepicker
-            //TODO: Incorporate timePicker to get dateTime
             Date date = getDateFromPicker();
             String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss a", date).toString();
             //Try to get geoCoordinates from Address String
@@ -143,11 +143,11 @@ public class ReportSightingScreen extends AppCompatActivity {
             try {
                 geoCoords = getLocationFromAddress(addr.getText().toString() +
                         ", " + city.getText().toString());
+
             } catch (Exception e) {
                 geoCoords[0] = 0;
                 geoCoords[1] = 0;
             }
-
             long longDate = getLongDateFromDateString(dateString);
 
             //Create sighting based upon gathered information
@@ -196,7 +196,7 @@ public class ReportSightingScreen extends AppCompatActivity {
      * @return long value of date
      */
     private long getLongDateFromDateString(String date) {
-        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             Date dateObj = f.parse(date);
             return dateObj.getTime();

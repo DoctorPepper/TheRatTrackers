@@ -18,14 +18,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpScreen extends AppCompatActivity {
-    Button signUpButton;
-    Button cancelButton;
-    TextInputEditText emailInput;
-    TextInputLayout passwordInput;
-    TextInputLayout passwordConfirm;
-    Spinner accountSpinner;
+    private TextInputEditText emailInput;
+    private TextInputLayout passwordInput;
+    private TextInputLayout passwordConfirm;
 
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
 
     /**
      * Initialize the activity
@@ -39,12 +36,12 @@ public class SignUpScreen extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_screen);
 
         // Get all user input fields
-        cancelButton = (Button) findViewById(R.id.cancelButton);
-        signUpButton = (Button) findViewById(R.id.signUpConfirmButton);
+        Button cancelButton = (Button) findViewById(R.id.cancelButton);
+        Button signUpButton = (Button) findViewById(R.id.signUpConfirmButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email_signUp);
         passwordInput = (TextInputLayout) findViewById(R.id.password_SignUp);
         passwordConfirm = (TextInputLayout) findViewById(R.id.password_confirm_SignUp);
-        accountSpinner = (Spinner) findViewById(R.id.accountType);
+        Spinner accountSpinner = (Spinner) findViewById(R.id.accountType);
 
         // Set the array adapter to the two account types, user and admin
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -101,7 +98,7 @@ public class SignUpScreen extends AppCompatActivity {
      * @param email the email of the account
      * @param password the password of the account
      */
-    public void createFireAccount(String email, String password) {
+    private void createFireAccount(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

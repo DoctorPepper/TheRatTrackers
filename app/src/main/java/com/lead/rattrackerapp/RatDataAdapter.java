@@ -18,8 +18,8 @@ import java.util.List;
  */
 
 class RatDataAdapter extends RecyclerView.Adapter<RatDataAdapter.TextViewHolder>{
-    private List<Sighting> in;
-    private LayoutInflater inflater;
+    private final List<Sighting> in;
+    private final LayoutInflater inflater;
     private SightingClickListener listener;
 
     RatDataAdapter(Context context, List<Sighting> in) {
@@ -41,7 +41,7 @@ class RatDataAdapter extends RecyclerView.Adapter<RatDataAdapter.TextViewHolder>
     }
 
     /**
-     * Called by RecyclerView to displey the new data
+     * Called by RecyclerView to display the new data
      *
      * @param holder the ViewHolder to represent the content of the item
      * @param position the position of the item
@@ -86,7 +86,7 @@ class RatDataAdapter extends RecyclerView.Adapter<RatDataAdapter.TextViewHolder>
     }
 
     public class TextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView view;
+        final TextView view;
 
         public TextViewHolder(View itemView) {
             super(itemView);

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.10"
-        android:text="Select a start and end date of sightings to display" />
+        android:text="@string/date_select_instructions"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,11 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Date:" />
+            android:text="@string/start_date" />
 
         <DatePicker
             android:id="@+id/date_start_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:calendarViewShown="false"
@@ -42,11 +42,11 @@
             android:id="@+id/textView2"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="End Date: " />
+            android:text="@string/end_date" />
 
         <DatePicker
             android:id="@+id/date_end_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
             android:calendarViewShown="false"
@@ -60,6 +60,13 @@
         android:layout_marginRight="@dimen/input_label_padding_horizontal"
         android:orientation="horizontal"
         android:layout_weight="1">
+        <Button
+            android:id="@+id/cancel"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/searchSightings"
@@ -68,14 +75,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/search" />
-
-        <Button
-            android:id="@+id/cancel"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cancel" />
 
     </LinearLayout>
 

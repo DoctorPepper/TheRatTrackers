@@ -1,7 +1,7 @@
 package com.lead.rattrackerapp.Model.Accounts;
 
 /* The model for a user's account */
-public class Account {
+class Account {
     private String email;
     private String password;
     private boolean locked;
@@ -11,7 +11,7 @@ public class Account {
         this(email, password, AccountType.USER, false);
     }
 
-    public Account(String email, String password, AccountType type, boolean locked) {
+    private Account(String email, String password, AccountType type, boolean locked) {
         this.email = email;
         this.password = password;
         this.type = type;

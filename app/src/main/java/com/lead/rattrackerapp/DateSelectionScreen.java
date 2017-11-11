@@ -13,14 +13,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateSelectionScreen extends AppCompatActivity {
 
-    DatePicker startDateInput;
-    DatePicker endDateInput;
-    Button searchButton;
-    Button cancelButton;
-    String target;
+    private DatePicker startDateInput;
+    private DatePicker endDateInput;
+    private String target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +30,8 @@ public class DateSelectionScreen extends AppCompatActivity {
 
         startDateInput = (DatePicker) findViewById(R.id.date_start_input);
         endDateInput = (DatePicker) findViewById(R.id.date_end_input);
-        searchButton = (Button) findViewById(R.id.searchSightings);
-        cancelButton = (Button) findViewById(R.id.cancel);
+        Button searchButton = (Button) findViewById(R.id.searchSightings);
+        Button cancelButton = (Button) findViewById(R.id.cancel);
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +82,7 @@ public class DateSelectionScreen extends AppCompatActivity {
 
         Date date = calendar.getTime();
         String dateString = DateFormat.format("MM/dd/yyyy hh:mm:ss a", date).toString();
-        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             Date dateObj = f.parse(dateString);
             return dateObj.getTime();

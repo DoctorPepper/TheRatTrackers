@@ -7,14 +7,14 @@ package com.lead.rattrackerapp.Model.Sightings;
  */
 
 public enum Borough {
-    MANHATTAN ("Manhatten"),
+    MANHATTAN ("Manhattan"),
     STATEN_ISLAND ("Staten Island"),
     QUEENS ("Queens"),
     BROOKLYN ("Brooklyn"),
     BRONX ("Bronx"),
     NONE ("");
 
-    private String name;
+    private final String name;
 
     Borough (String name) {
         this.name = name;

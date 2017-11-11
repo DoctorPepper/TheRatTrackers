@@ -17,10 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class StartScreen extends AppCompatActivity {
-    Button loginButton;
-    Button signUpButton;
-    TextInputEditText emailInput;
-    TextInputLayout passwordInput;
+    private TextInputEditText emailInput;
+    private TextInputLayout passwordInput;
 
     //Firebase Account Authentication instance data
     private FirebaseAuth mAuth;
@@ -43,8 +41,8 @@ public class StartScreen extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
 
         // Get all user input fields
-        loginButton = (Button) findViewById(R.id.loginButton);
-        signUpButton = (Button) findViewById(R.id.signUpButton);
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        Button signUpButton = (Button) findViewById(R.id.signUpButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
         passwordInput = (TextInputLayout) findViewById(R.id.input_password_layout);
 
@@ -121,7 +119,7 @@ public class StartScreen extends AppCompatActivity {
      * @param email the email with which the user is attempting to sign in
      * @param password the password with which the user is attempting to sign in
      */
-    public void signIn(String email, String password) {
+    private void signIn(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override

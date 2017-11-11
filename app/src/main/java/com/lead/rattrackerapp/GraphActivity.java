@@ -26,7 +26,7 @@ public class GraphActivity extends AppCompatActivity {
     private Calendar startDate;
     private Calendar endDate;
 
-    private static String[] mNames = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
+    private static final String[] mNames = {"Jan", "Feb", "Mar", "April", "May", "June", "July", "Aug",
                         "Sept", "Oct", "Nov", "Dec"};
 
     @Override
@@ -149,7 +149,7 @@ public class GraphActivity extends AppCompatActivity {
 
     private class XAxisMonthValueFormatter implements IAxisValueFormatter {
 
-        private String[] monthNames;
+        private final String[] monthNames;
 
         public XAxisMonthValueFormatter(String[] values) {
             this.monthNames = values;

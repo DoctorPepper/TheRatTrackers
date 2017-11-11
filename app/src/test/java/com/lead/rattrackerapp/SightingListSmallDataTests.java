@@ -33,11 +33,11 @@ import java.util.List;
 @PrepareForTest({ FirebaseDatabase.class})
 public class SightingListSmallDataTests {
 
-    static SightingList real;
-    List<Sighting> fullTestList;
-    List<Sighting> emptyTestList;
-    List<Sighting> halfTestList;
-    List<Sighting> sizeOneTestList;
+    private static SightingList real;
+    private List<Sighting> fullTestList;
+    private List<Sighting> emptyTestList;
+    private List<Sighting> halfTestList;
+    private List<Sighting> sizeOneTestList;
 
     @Before
     public void setUp() throws Exception {

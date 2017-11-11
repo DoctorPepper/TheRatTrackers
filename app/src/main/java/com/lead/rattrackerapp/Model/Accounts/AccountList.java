@@ -3,7 +3,7 @@ package com.lead.rattrackerapp.Model.Accounts;
 import java.util.HashMap;
 
 /* A list of accounts held by the application */
-public class AccountList {
+class AccountList {
     private static final AccountList ourInstance = new AccountList();
     private static HashMap<String, Account> accounts;
 
@@ -26,7 +26,7 @@ public class AccountList {
      * @param email The email of the associated account
      * @return true if the account exists, false otherwise
      */
-    public static boolean accountExists(String email) {
+    private static boolean accountExists(String email) {
         return accounts.containsKey(email);
     }
 

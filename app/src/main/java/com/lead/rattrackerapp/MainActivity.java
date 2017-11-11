@@ -23,14 +23,8 @@ import com.lead.rattrackerapp.Model.Sightings.SightingList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    RecyclerView sightingList;
-    Button logOutButton;
-    FloatingActionButton graphButton;
-    FloatingActionButton mapButton;
-    FloatingActionButton reportButton;
-    FirebaseAuth mAuth;
-
-    DatabaseReference mDatabase;
+    private RecyclerView sightingList;
+    private FirebaseAuth mAuth;
 
     /**
      * Initialize the activity
@@ -44,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Get all of the user input buttons in order to later set listeners
-        logOutButton = (Button) findViewById(R.id.button_log_out);
-        graphButton = (FloatingActionButton) findViewById(R.id.button_graph);
-        mapButton = (FloatingActionButton) findViewById(R.id.button_main_map);
-        reportButton = (FloatingActionButton) findViewById(R.id.button_reportSighting);
+        Button logOutButton = (Button) findViewById(R.id.button_log_out);
+        FloatingActionButton graphButton = (FloatingActionButton) findViewById(R.id.button_graph);
+        FloatingActionButton mapButton = (FloatingActionButton) findViewById(R.id.button_main_map);
+        FloatingActionButton reportButton = (FloatingActionButton) findViewById(R.id.button_reportSighting);
         sightingList = (RecyclerView) findViewById(R.id.sightings_list);
         sightingList.setLayoutManager(new LinearLayoutManager(this));
 
@@ -55,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //Get database reference
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //Set up database query to only include last 50 sightings
         Query smallQuery = mDatabase.child("sighting").orderByChild("longDate").limitToLast(200);

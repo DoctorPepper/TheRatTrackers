@@ -6,12 +6,29 @@
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="button_log_in">Log In</string>
     <string name="button_log_out">Log Out</string>
-    <string name="text_sign_up">Sign up</string>
+    <string name="text_sign_up">Sign Up</string>
     <string name="button_sign_up">Sign me up!</string>
     <string name="text_account_type">Account Type:</string>
     <string name="search">Search</string>
     <string name="back">Back</string>
     <string name="end_date_greater_start_date">The end date must be after the start date</string>
+    <string name="date_select_instructions">Select a start and end date of sightings to display</string>
+    <string name="start_date">Start Date: </string>
+    <string name="end_date">End Date: </string>
+    <string name="description_center_pin">center pin</string>
+    <string name="description_app_logo">app logo</string>
+    <string name="map">Map</string>
+    <string name="description_clock">clock</string>
+    <string name="amixx_xx_soluxxxx">Amixx XX Soluxxxx</string>
+    <string name="description_flag_logo">flag logo</string>
+    <string name="description_city_logo">city logo</string>
+    <string name="description_globe_logo">globe logo</string>
+    <string name="date_label">Date: </string>
+    <string name="address_label">Address: </string>
+    <string name="city_label">City: </string>
+    <string name="borough_label">Borough: </string>
+    <string name="lat_label">Latitude: </string>
+    <string name="long_label">Longitude: </string>
 
     <!-- Report Sightings -->
     <string name="reportAddress">Address</string>
