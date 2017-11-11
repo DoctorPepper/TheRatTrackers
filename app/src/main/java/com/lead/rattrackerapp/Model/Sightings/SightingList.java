@@ -29,7 +29,6 @@ public class SightingList {
 
     private SightingList() {
         data = new ArrayList<>();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void reset() {
