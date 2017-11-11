@@ -77,18 +77,18 @@ class RatDataAdapter extends RecyclerView.Adapter<RatDataAdapter.TextViewHolder>
      *
      * @param listener the listener to be set
      */
-    public void setClickListener(SightingClickListener listener) {
+    void setClickListener(SightingClickListener listener) {
         this.listener = listener;
     }
 
-    public interface SightingClickListener {
-        void onItemClick(View v, int p);
+    interface SightingClickListener {
+        void onItemClick(int p);
     }
 
-    public class TextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class TextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView view;
 
-        public TextViewHolder(View itemView) {
+        TextViewHolder(View itemView) {
             super(itemView);
             view = itemView.findViewById(R.id.rat_info_row);
             itemView.setOnClickListener(this);
@@ -100,7 +100,7 @@ class RatDataAdapter extends RecyclerView.Adapter<RatDataAdapter.TextViewHolder>
          */
         @Override
         public void onClick(View view) {
-            if (listener != null) listener.onItemClick(view, getAdapterPosition());
+            if (listener != null) listener.onItemClick(getAdapterPosition());
         }
 
         public TextView getView() {

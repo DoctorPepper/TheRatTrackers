@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 RatDataAdapter rda = new RatDataAdapter(MainActivity.this, currList);
                 rda.setClickListener(new RatDataAdapter.SightingClickListener() {
                     @Override
-                    public void onItemClick(View v, int p) {
+                    public void onItemClick(int p) {
                         if (findViewById(R.id.info_card).getVisibility() == View.GONE) {
                             Sighting clickedSighting = currList.get(p);
                             findViewById(R.id.info_card).setVisibility(View.VISIBLE);
