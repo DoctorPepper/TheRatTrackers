@@ -22,6 +22,9 @@ import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
 import java.util.List;
 
+/**
+ * Creates the main activity for the "home" screen.
+ */
 public class MainActivity extends AppCompatActivity {
     private RecyclerView sightingList;
     private FirebaseAuth mAuth;

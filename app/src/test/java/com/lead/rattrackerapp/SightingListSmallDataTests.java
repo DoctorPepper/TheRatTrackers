@@ -39,6 +39,10 @@ public class SightingListSmallDataTests {
     private List<Sighting> halfTestList;
     private List<Sighting> sizeOneTestList;
 
+    /**
+     * Sets up tests
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         DatabaseReference mockedDatabaseReference = Mockito.mock(DatabaseReference.class);
@@ -68,6 +72,9 @@ public class SightingListSmallDataTests {
         }
     }
 
+    /**
+     * Tests a negative amount
+     */
     @Test
     public void testAmountNegative() {
         try {
@@ -79,6 +86,9 @@ public class SightingListSmallDataTests {
         }
     }
 
+    /**
+     * Tests the size of the returned list
+     */
     @Test
     public void testSizeOfReturnedList() {
         assertEquals(26, real.size());
@@ -99,6 +109,9 @@ public class SightingListSmallDataTests {
                 0, actual.size());
     }
 
+    /**
+     * Tests an amount larger than its size
+     */
     @Test
     public void testAmountLargerThanSize() {
         List<Sighting> actual = real.getSmallData(30);
@@ -107,6 +120,9 @@ public class SightingListSmallDataTests {
                 fullTestList, actual);
     }
 
+    /**
+     * Tests amount equal to its size
+     */
     @Test
     public void testAmountIsSize() {
         List<Sighting> actual = real.getSmallData(26);
@@ -116,7 +132,9 @@ public class SightingListSmallDataTests {
     }
 
 
-
+    /**
+     * Tests 1 sighting
+     */
     @Test
     public void testAmountOne() {
         List<Sighting> actual = real.getSmallData(1);
@@ -125,6 +143,9 @@ public class SightingListSmallDataTests {
                 sizeOneTestList, actual);
     }
 
+    /**
+     * Tests 0 sightings
+     */
     @Test
     public void testAmountZero() {
         List<Sighting> actual = real.getSmallData(0);
@@ -133,6 +154,9 @@ public class SightingListSmallDataTests {
                 emptyTestList, actual);
     }
 
+    /**
+     * Tests an average amount of Sightings
+     */
     @Test
     public void testAmountGeneral() {
         List<Sighting> actual = real.getSmallData(13);

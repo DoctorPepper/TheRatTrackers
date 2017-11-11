@@ -16,6 +16,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Class that creates a Start Screen to enter account information
+ */
 public class StartScreen extends AppCompatActivity {
     private TextInputEditText emailInput;
     private TextInputLayout passwordInput;

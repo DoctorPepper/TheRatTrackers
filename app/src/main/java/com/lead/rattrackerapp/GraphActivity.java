@@ -22,6 +22,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+/**
+ * Creates an activity for Graph
+ */
 public class GraphActivity extends AppCompatActivity {
     private Calendar startDate;
     private Calendar endDate;

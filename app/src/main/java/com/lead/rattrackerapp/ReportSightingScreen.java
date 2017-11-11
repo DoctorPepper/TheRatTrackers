@@ -30,6 +30,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Class to create a screen to report rat sightings.
+ */
 public class ReportSightingScreen extends AppCompatActivity {
 
     private TextInputEditText addr;

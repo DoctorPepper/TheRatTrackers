@@ -28,6 +28,9 @@ public class SightingList {
         data = new ArrayList<>();
     }
 
+    /**
+     * Creates a new SightingList.
+     */
     public void reset() {
         data = new ArrayList<>();
     }

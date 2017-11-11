@@ -18,6 +18,19 @@ public class Sighting {
     private double latitude;
     private long longDate;
 
+    /**
+     * Full constructor
+     * @param id the Sighting's ID number
+     * @param date the Sighting's date
+     * @param locationType the Sighting's location type
+     * @param zip the Sighting's zip code
+     * @param address the Sighting's address
+     * @param city the Sighting's city
+     * @param borough the Sighting's borough
+     * @param longitude the Sighting's longitude
+     * @param latitude the Sighting's latitude
+     * @param longDate the Sighting's date
+     */
     public Sighting(int id, String date, String locationType, String zip, String address, String city,
                     Borough borough, double longitude, double latitude, long longDate) {
         this.id = id;
@@ -34,6 +47,9 @@ public class Sighting {
 
     }
 
+    /**
+     * Empty constructor
+     */
     public Sighting() {
     }
 
@@ -199,10 +215,18 @@ public class Sighting {
         this.latitude = latitude;
     }
 
+    /**
+     * Sets the date of the Sightings
+     * @param longDate the new date to be entered
+     */
     public void setLongDate(long longDate) {
         this.longDate = longDate;
     }
 
+    /**
+     * gets the date of the Sighting
+     * @return the date
+     */
     public long getLongDate() {
         return longDate;
     }

@@ -15,6 +15,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Class that creates a screen to select a date from a selection screen.
+ */
 public class DateSelectionScreen extends AppCompatActivity {
 
     private DatePicker startDateInput;

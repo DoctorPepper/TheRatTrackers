@@ -23,6 +23,9 @@ import com.lead.rattrackerapp.Model.Sightings.SightingList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Creates an Activity for the map
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, InfoWindowAdapter {
 
 
