@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Class that creates a Sign Up screen to create an account
+ */
 public class SignUpScreen extends AppCompatActivity {
     private TextInputEditText emailInput;
     private TextInputLayout passwordInput;

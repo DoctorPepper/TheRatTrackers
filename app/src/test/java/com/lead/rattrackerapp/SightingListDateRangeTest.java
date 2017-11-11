@@ -22,6 +22,9 @@ import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * JUnit tests for SightingListDateRange()
+ */
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(JUnit4.class)
 @PrepareForTest({ FirebaseDatabase.class})
@@ -33,6 +36,10 @@ public class SightingListDateRangeTest {
     private List<Sighting> halfTestList;
     private List<Sighting> sizeOneTestList;
 
+    /**
+     * Sets up tests
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         DatabaseReference mockedDatabaseReference = Mockito.mock(DatabaseReference.class);
@@ -62,18 +69,27 @@ public class SightingListDateRangeTest {
         }
     }
 
+    /**
+     * Tests a full list
+     */
     @Test
     public void testFullListRange() {
         List<Sighting> fullList = real.getDateRangeDate(0, 26);
         assertEquals(fullTestList.size(), fullList.size());
     }
 
+    /**
+     * Tests a half list
+     */
     @Test
     public void testHalfListRange() {
         List<Sighting> halfList = real.getDateRangeDate(13, 27);
         assertEquals(halfTestList.size(), halfList.size());
     }
 
+    /**
+     * Tests a list of one element
+     */
     @Test
     public void testOneElementList() {
         List<Sighting> lastEle = real.getDateRangeDate(25, 27);

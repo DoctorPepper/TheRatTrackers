@@ -16,9 +16,13 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+    /**
+     * Uses the context of the app under test.
+     * @throws Exception
+     */
     @Test
     public void useAppContext() throws Exception {
-        // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.lead.rattrackerapp", appContext.getPackageName());

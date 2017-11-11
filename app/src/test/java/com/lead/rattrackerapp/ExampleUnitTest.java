@@ -10,6 +10,10 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
+    /**
+     * Example: asserts if addition gives correct answer
+     * @throws Exception
+     */
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);

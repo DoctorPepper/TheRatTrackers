@@ -32,6 +32,9 @@ public class SightingList {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
+    /**
+     * Creates a new SightingList.
+     */
     public void reset() {
         data = new ArrayList<>();
     }
