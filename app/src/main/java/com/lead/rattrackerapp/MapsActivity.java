@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -35,7 +36,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
 
             // Getting view from the layout file info_window_layout
-            v = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            v = getLayoutInflater().inflate(R.layout.custom_info_window,
+                    (ViewGroup) findViewById(R.layout.activity_maps));
 
             TextView sightingNo = v.findViewById(R.id.sightingNo);
             sightingNo.setText(marker.getTitle());
