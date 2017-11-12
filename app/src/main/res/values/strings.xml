@@ -7,8 +7,6 @@
     <string name="button_log_in">Log In</string>
     <string name="button_log_out">Log Out</string>
     <string name="text_sign_up">Sign Up</string>
-    <string name="button_sign_up">Sign me up!</string>
-    <string name="text_account_type">Account Type:</string>
     <string name="search">Search</string>
     <string name="back">Back</string>
     <string name="end_date_greater_start_date">The end date must be after the start date</string>
@@ -17,7 +15,6 @@
     <string name="end_date">End Date: </string>
     <string name="description_center_pin">center pin</string>
     <string name="description_app_logo">app logo</string>
-    <string name="map">Map</string>
     <string name="description_clock">clock</string>
     <string name="amixx_xx_soluxxxx">Amixx XX Soluxxxx</string>
     <string name="description_flag_logo">flag logo</string>
@@ -34,9 +31,7 @@
     <string name="reportAddress">Address</string>
     <string name="reportCity">City</string>
     <string name="reportZip">Zip Code</string>
-    <string name="reportTime">Time</string>
     <string name="reportDate">Date</string>
-    <string name="reportSighting">Report a Sighting</string>
     <string name="reportSightingMap">REPORT A RAT</string>
     <string name="reportLocationType">Location Type</string>
     <string name="key">id</string>
