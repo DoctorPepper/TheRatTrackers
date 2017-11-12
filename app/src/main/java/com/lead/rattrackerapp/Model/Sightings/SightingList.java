@@ -113,25 +113,23 @@ public class SightingList {
     }
 
     /**
-     * Gets a subset of the data
+     * Gets a subset of the data. If given incorrect
+     * indexes, returns an empty list
      *
      * @param start marks the start of the subset
      * @param end marks the end of the subset
-     * @return the subset of data
+     * @return the subset of data or an empty list
      */
     public List<Sighting> getSubsetData(int start, int end) {
-        if ((end - start) < data.size()) {
-            List<Sighting> subData = new ArrayList<>(data.size());
-            for (int i = 0; i < data.size(); i++) {
-                subData.add(data.get(i));
-            }
-            return subData;
-        } else {
+        if (start >= 0 && end <= data.size() && end > start) {
             List<Sighting> subData = new ArrayList<>(end - start);
             for (int i = start; i < end; i++) {
                 subData.add(data.get(i));
             }
             return subData;
+        } else {
+            List<Sighting> emptyData = new ArrayList<>(data.size());
+            return emptyData;
         }
     }
 
