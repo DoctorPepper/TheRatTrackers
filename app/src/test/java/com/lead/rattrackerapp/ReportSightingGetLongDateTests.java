@@ -33,26 +33,41 @@ public class ReportSightingGetLongDateTests {
         noDateTime = "12:00:00 AM";
     }
 
+    /**
+     * Tests with a valid date string
+     */
     @Test
     public void testValid() {
         assertEquals(screen.getLongDateFromDateString(validDate), validDateLong);
     }
 
+    /**
+     * Tests with an invalid date string (not in the correct date/time format)
+     */
     @Test
     public void testInvalid() {
         assertEquals(screen.getLongDateFromDateString(invalidDate), 0);
     }
 
+    /**
+     * Tests with an empty string
+     */
     @Test
     public void testEmpty() {
         assertEquals(screen.getLongDateFromDateString(empty), 0);
     }
 
+    /**
+     * Tests with a string that contains a date but not a time
+     */
     @Test
     public void testNoTime() {
         assertEquals(screen.getLongDateFromDateString(noTimeDate), 0);
     }
 
+    /**
+     * Tests with a string that contains a time but not a date
+     */
     @Test
     public void testNoDate() {
         assertEquals(screen.getLongDateFromDateString(noDateTime), 0);
