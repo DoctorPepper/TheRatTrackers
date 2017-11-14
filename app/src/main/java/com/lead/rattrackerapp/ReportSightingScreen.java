@@ -170,14 +170,18 @@ public class ReportSightingScreen extends AppCompatActivity {
      * @param strAddress the address entered as a String
      * @return the location
      */
-    private double[] getLocationFromAddress(String strAddress) {
+    public double[] getLocationFromAddress(String strAddress) {
         Geocoder coder = new Geocoder(this);
         List<Address> address;
+        System.out.println("hay");
         try {
+            System.out.println("tryyy");
             address = coder.getFromLocationName(strAddress,5);
             if (address == null) {
+                System.out.println("It's a nulll");
                 return null;
             }
+            System.out.println("past nullll");
             Address location = address.get(0);
             location.getLatitude();
             location.getLongitude();
@@ -188,6 +192,7 @@ public class ReportSightingScreen extends AppCompatActivity {
 
             return geoCoords;
         } catch (IOException e) {
+            System.out.println("except!!!");
             return null;
         }
     }
@@ -198,7 +203,7 @@ public class ReportSightingScreen extends AppCompatActivity {
      * @param date string format of date
      * @return long value of date
      */
-    private long getLongDateFromDateString(String date) {
+    public long getLongDateFromDateString(String date) {
         SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.US);
         try {
             Date dateObj = f.parse(date);

@@ -3,7 +3,7 @@ package com.lead.rattrackerapp.Model.Accounts;
 import java.util.HashMap;
 
 /* A list of accounts held by the application */
-class AccountList {
+public class AccountList {
     private static final AccountList ourInstance = new AccountList();
     private static HashMap<String, Account> accounts;
 
@@ -16,7 +16,7 @@ class AccountList {
         return ourInstance;
     }
 
-    private AccountList() {
+    public AccountList() {
         accounts = new HashMap<>();
     }
 

@@ -73,7 +73,7 @@ public class DateSelectionScreen extends AppCompatActivity {
      * @param datePicker the DatePicker object
      * @return the date of the calender
      */
-    private static long getLongDateFromPicker(DatePicker datePicker) {
+    public static long getLongDateFromPicker(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
         int year =  datePicker.getYear();
