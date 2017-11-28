@@ -50,6 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DateSelectionScreen" />
         <activity android:name=".GraphActivity" />
+        <activity android:name=".ForgotPasswordActivity" />
     </application>
 
 </manifest>

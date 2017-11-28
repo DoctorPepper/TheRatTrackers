@@ -6,7 +6,9 @@
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="button_log_in">Log In</string>
     <string name="button_log_out">Log Out</string>
+    <string name="button_reset_password">Reset your Password</string>
     <string name="text_sign_up">Sign Up</string>
+    <string name="text_forgot_password">Forgot your password? Click here!</string>
     <string name="search">Search</string>
     <string name="back">Back</string>
     <string name="end_date_greater_start_date">The end date must be after the start date</string>

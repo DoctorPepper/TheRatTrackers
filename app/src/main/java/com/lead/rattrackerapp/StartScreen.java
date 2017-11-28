@@ -46,6 +46,7 @@ public class StartScreen extends AppCompatActivity {
         // Get all user input fields
         Button loginButton = (Button) findViewById(R.id.loginButton);
         Button signUpButton = (Button) findViewById(R.id.signUpButton);
+        Button forgotButton = (Button) findViewById(R.id.forgotPasswordButton);
         emailInput = (TextInputEditText) findViewById(R.id.input_email);
         passwordInput = (TextInputLayout) findViewById(R.id.input_password_layout);
 
@@ -75,6 +76,15 @@ public class StartScreen extends AppCompatActivity {
                 } else {
                     signIn(email, password);
                 }
+            }
+        });
+
+        // Set forgot password button to take you to the forgot password activity
+        forgotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartScreen.this, ForgotPasswordActivity.class);
+                startActivity(intent);
             }
         });
 
