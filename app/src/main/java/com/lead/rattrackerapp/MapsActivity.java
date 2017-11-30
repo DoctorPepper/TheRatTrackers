@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -144,7 +145,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Marker newMarker = mMap.addMarker(new MarkerOptions()
                     .position(p)
                     .alpha(0.5f)
-                    .title("Sighting #" + Integer.toString(s.getId())));
+                    .title("Sighting #" + Integer.toString(s.getId()))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.rat_nowhiskers)));
             newMarker.setTag(index);
             System.out.println(index);
             index++;
