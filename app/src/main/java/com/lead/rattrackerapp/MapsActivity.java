@@ -1,13 +1,20 @@
 package com.lead.rattrackerapp;
 
+import android.Manifest;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
@@ -17,7 +24,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.lead.rattrackerapp.Model.Sightings.Sighting;
 import com.lead.rattrackerapp.Model.Sightings.SightingList;
 
@@ -29,6 +36,8 @@ import java.util.Locale;
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, InfoWindowAdapter {
 
+    private FusedLocationProviderClient mLocationClient;
+    private int mLocationPermissionRequest = 1;
 
     @Override
     public View getInfoWindow(Marker marker) {
@@ -116,6 +125,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         long end = getIntent().getLongExtra("end", 0);
         //System.err.println("From " + start + " to " + end);
         currList = SightingList.getInstance().getDateRangeDate(start, end);
+        mLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
     }
 
 
@@ -133,12 +144,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in NYC and move the camera
+        boolean fineCheck = (ContextCompat.checkSelfPermission(
+                this, android.Manifest.permission.ACCESS_FINE_LOCATION))
+                == PackageManager.PERMISSION_GRANTED;
+        boolean coarseCheck = (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.ACCESS_COARSE_LOCATION))
+                == PackageManager.PERMISSION_GRANTED;
+        if (!fineCheck && !coarseCheck) {
+            String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION};
+            requestPermissions(permissions, mLocationPermissionRequest);
+        }
+        if (fineCheck || coarseCheck) {
+            mLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                        @Override
+                        public void onSuccess(Location location) {
+                            if (location != null) {
+                                LatLng loc = new LatLng(location.getLatitude(),
+                                        location.getLongitude());
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
+                            } else {
+                                LatLng nyc = new LatLng(40.73, -73.93);
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
+                                mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
+                            }
+                        }
+                    });
+        } else {
+            LatLng nyc = new LatLng(40.73, -73.93);
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
+        }
         LatLng nyc = new LatLng(40.73, -73.93);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
-
         int index = 0;
         for (Sighting s : currList) {
             LatLng p = new LatLng(s.getLatitude(), s.getLongitude());
@@ -152,6 +192,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             index++;
         }
         mMap.setInfoWindowAdapter(this);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        if (requestCode == mLocationPermissionRequest) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    boolean fineCheck = (ContextCompat.checkSelfPermission(
+                        this, android.Manifest.permission.ACCESS_FINE_LOCATION))
+                        == PackageManager.PERMISSION_GRANTED;
+                    boolean coarseCheck = (ContextCompat.checkSelfPermission(
+                        this, Manifest.permission.ACCESS_COARSE_LOCATION))
+                        == PackageManager.PERMISSION_GRANTED;
+                    mLocationClient.getLastLocation()
+                        .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                            @Override
+                            public void onSuccess(Location location) {
+                                if (location != null) {
+                                    LatLng loc = new LatLng(location.getLatitude(),
+                                            location.getLongitude());
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                                    mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
+                                } else {
+                                    LatLng nyc = new LatLng(40.73, -73.93);
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
+                                    mMap.animateCamera(CameraUpdateFactory.zoomTo(12.0f));
+                                }
+                            }
+                        });
+            }
+        }
     }
 
 }
