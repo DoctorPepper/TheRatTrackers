@@ -98,7 +98,7 @@ public class ReportSightingScreen extends AppCompatActivity {
                 List<Address> matches = geoCoder.getFromLocation(lat, lng, 1);
                 Address bestMatch = (matches.isEmpty() ? null : matches.get(0));
                 addr.setText(bestMatch.getAddressLine(0));
-                city.setText(bestMatch.getAdminArea());
+                city.setText(bestMatch.getLocality());
                 czip.setText(bestMatch.getPostalCode());
             } catch (Exception e) {
                 Log.w(TAG, "Some or all info not displayed");
