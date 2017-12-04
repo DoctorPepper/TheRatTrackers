@@ -128,8 +128,7 @@ public class SightingList {
             }
             return subData;
         } else {
-            List<Sighting> emptyData = new ArrayList<>(data.size());
-            return emptyData;
+            return  new ArrayList<>(data.size());
         }
     }
 
