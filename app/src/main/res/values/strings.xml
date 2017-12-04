@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">RatTrackerApp</string>
     <!-- Sign in/Sign up-->
+    <string name="facebook_app_id">1924821827835954</string>
+    <string name="fb_login_protocol_scheme">fb1924821827835954</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
